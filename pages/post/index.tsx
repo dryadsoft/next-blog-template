@@ -1,7 +1,8 @@
 import { gql } from "@apollo/client";
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Link from "next/link";
-import { client } from "../src/lib/apolloClient";
+import { client } from "../../src/lib/apolloClient";
+
 const EXCHANGE_RATES = gql`
   query GetExchangeRates {
     rates(currency: "USD") {
@@ -21,14 +22,14 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const Home: NextPage = ({
+const Posts: NextPage = ({
   rates,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   console.log("getStaticProps", rates.length);
   return (
     <div className="text-white bg-gray-900 h-screen w-screen overflow-hidden">
-      <Link href="/post">
-        <a>Post</a>
+      <Link href="/">
+        <a>Home</a>
       </Link>{" "}
       |{" "}
       <Link href="/about">
@@ -38,4 +39,4 @@ const Home: NextPage = ({
   );
 };
 
-export default Home;
+export default Posts;

@@ -1,34 +1,194 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# next-blog-template
 
-## Getting Started
+## next.js 설치(typescript버전)
 
-First, run the development server:
+> [next.js문서 바로가기](https://nextjs.org/docs)
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ npx create-next-app@latest --typescript
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## tailwindcss 설치
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+> [tailwindcss next.js설치문서 바로가기](https://tailwindcss.com/docs/guides/nextjs)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+# If you're on Next.js v10 or newer
+yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# If you're on Next.js v9 or older
+yarn add -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+```
 
-## Learn More
+### tailwindcss config파일 생성
 
-To learn more about Next.js, take a look at the following resources:
+> 아래 명령어를 실행하면 tailwind.config.js, postcss.config.js 파일이 자동생성된다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+$ npx tailwindcss init -p
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 프로덕션에서 사용하지 않는 스타일을 제거하도록 Tailwind 구성
 
-## Deploy on Vercel
+```javascript
+  // tailwind.config.js
+  module.exports = {
+   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+    ...
+  }
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### tailwindcss를 사용자css에 추가하기
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```css
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### tailwindcss 적용
+
+> 기존globals.css에 추가하였다면 \_app.tsx를 수정할필요없음
+
+```javascript
+// pages/_app.tsx
+import "../styles/globals.css";
+
+function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
+
+export default MyApp;
+```
+
+## Apollo-Client & Graphql 적용
+
+> [Apollo Client 문서 바로가기](https://www.apollographql.com/docs/react/get-started/)
+
+### Apollo client 설치
+
+```bash
+    yarn add @apollo/client graphql
+```
+
+### ApolloClient 설정파일
+
+```typescript
+// src/lib/apolloClient.ts
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+
+export const client = new ApolloClient({
+  uri: "https://48p1r2roz4.sse.codesandbox.io",
+  cache: new InMemoryCache(),
+});
+```
+
+### ApolloProvider 적용
+
+```tsx
+import { ApolloProvider } from "@apollo/client"; // 추가
+import type { AppProps } from "next/app";
+import { client } from "../src/lib/apolloClient"; // 추가
+import "../styles/globals.css";
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <ApolloProvider client={client}>
+      <Component {...pageProps} />
+    </ApolloProvider>
+  );
+}
+export default MyApp;
+```
+
+### Graphql 사용하기
+
+```tsx
+import { gql, useQuery } from "@apollo/client"; // 추가
+import type { NextPage } from "next";
+
+// 추가
+const EXCHANGE_RATES = gql`
+  query GetExchangeRates {
+    rates(currency: "USD") {
+      currency
+      rate
+    }
+  }
+`;
+
+const Home: NextPage = () => {
+  const { loading, error, data } = useQuery(EXCHANGE_RATES); // 추가
+  if (loading) return <p>Loading...</p>; // 추가
+  if (error) return <p>Error :(</p>; // 추가
+  console.log(data);
+  return (
+    <div className="text-white bg-gray-900 h-screen w-screen overflow-hidden">
+      test
+    </div>
+  );
+};
+
+export default Home;
+```
+
+### Graphql 사용하기 - getStaticProps(정적/사전 렌더링)
+
+> getStaticProps
+
+```note
+빌드 시에 딱 한 번"만 호출되고, 바로 static file로 빌드됩니다. 따라서, 이후 수정이 불가능합니다.
+SSG (Static Site Generation) 개념입니다.
+앱 빌드 후에 웬만하면 바뀌지 않는 내용 (고정된 내용)이 있는 page가 있는 경우에만 사용하는 것이 좋겠지요?
+장점은 호출 시 마다 매번 data fetch를 하지 않으니 getServerSideProps보다 성능면에서 좋습니다.
+```
+
+```tsx
+import { gql } from "@apollo/client";
+import type { GetStaticProps, NextPage } from "next";
+import { client } from "../src/lib/apolloClient";
+
+const EXCHANGE_RATES = gql`
+  query GetExchangeRates {
+    rates(currency: "USD") {
+      currency
+      rate
+    }
+  }
+`;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await client.query({
+    query: EXCHANGE_RATES,
+  });
+  return {
+    props: data,
+  };
+};
+
+const Home: NextPage = (props) => {
+  console.log(props);
+  return (
+    <div className="text-white bg-gray-900 h-screen w-screen overflow-hidden">
+      test
+    </div>
+  );
+};
+
+export default Home;
+```
+
+### Graphql 사용하기 - getServerSideProps
+
+> getServerSideProps
+
+```note
+"page가 요청받을때마다" 호출되어 pre-rendering합니다.
+SSR (Server Side Rendering) 개념입니다.
+pre-render가 꼭 필요한 동적 데이터가 있는 page에 사용하면 됩니다.
+매 요청마다 호출되므로 성능은 getStaticProps에 뒤지지만, 내용을 언제든 동적으로 수정이 가능합니다.
+```
+
+```tsx
+
+```
