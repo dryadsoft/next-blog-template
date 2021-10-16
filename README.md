@@ -193,12 +193,42 @@ pre-render가 꼭 필요한 동적 데이터가 있는 page에 사용하면 됩�
 
 ```
 
-### gh-pages 배포하기
+## gh-pages 배포하기
 
-```note
+```bash
+# gh-pages 패키지 설치
+$ yarn add -D gh-pages
+```
+
+```json
+// package.json
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export",
+    "gh-pages": "gh-pages -t -d out",
+    "remove:cache": "rm -rf node_modules/.cache",
+    "deploy": "yarn remove:cache && yarn build && yarn export && touch out/.nojekyll && yarn gh-pages"
+  },
+```
+
+```javascript
 // next.config.js
-  basePath:
-    process.env.NODE_ENV === "production" ? "/next-blog-templmplate" : "",
-  assetPrefix:
-    process.env.NODE_ENV === "production" ? "/next-blog-template/" : "",
+/** @type {import('next').NextConfig} */
+const nestConfig = () =>
+  process.env.NODE_ENV === "production"
+    ? {
+        reactStrictMode: true,
+        basePath: "/next-blog-template",
+        assetPrefix: "/next-blog-template/",
+        images: {
+          loader: "imgix",
+          path: "https://dryadsoft.github.io/next-blog-template/",
+        },
+      }
+    : { reactStrictMode: true };
+
+module.exports = nestConfig();
 ```

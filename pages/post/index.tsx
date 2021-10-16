@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Link from "next/link";
+import Seo from "../../components/seo";
 import { client } from "../../src/lib/apolloClient";
-
 const EXCHANGE_RATES = gql`
   query GetExchangeRates {
     rates(currency: "USD") {
@@ -28,6 +28,7 @@ const Posts: NextPage = ({
   console.log("getStaticProps", rates.length);
   return (
     <div className="text-white bg-gray-900 h-screen w-screen overflow-hidden">
+      <Seo title="Post" />
       <Link href="/">
         <a>Home</a>
       </Link>{" "}
