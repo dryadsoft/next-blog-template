@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { client } from "../src/lib/apolloClient";
 const EXCHANGE_RATES = gql`
@@ -34,6 +35,7 @@ const Home: NextPage = ({
       <Link href="/about">
         <a>About</a>
       </Link>
+      <Image layout="responsive" src="/01.jpg" width="100" height="100"></Image>
     </div>
   );
 };

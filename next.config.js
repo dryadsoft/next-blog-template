@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  assetPrefix: "/next-blog-template/",
+  basePath: process.env.NODE_ENV === "production" ? "/next-blog-template" : "",
+  assetPrefix:
+    process.env.NODE_ENV === "production" ? "/next-blog-template/" : "",
+  images: {
+    loader: "imgix",
+    path: "https://dryadsoft.github.io/next-blog-template/",
+  },
 };

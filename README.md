@@ -192,3 +192,13 @@ pre-render가 꼭 필요한 동적 데이터가 있는 page에 사용하면 됩�
 ```tsx
 
 ```
+
+### gh-pages 배포하기
+
+```note
+// next.config.js
+  basePath:
+    process.env.NODE_ENV === "production" ? "/next-blog-templmplate" : "",
+  assetPrefix:
+    process.env.NODE_ENV === "production" ? "/next-blog-template/" : "",
+```
