@@ -10,7 +10,7 @@ const Comment: FC = () => (
       scriptElem.src = "https://utteranc.es/client.js";
       scriptElem.async = true;
       scriptElem.setAttribute("repo", "dryadsoft/next-blog-template");
-      scriptElem.setAttribute("issue-term", "pathname");
+      scriptElem.setAttribute("issue-term", "title");
       scriptElem.setAttribute("theme", "github-dark");
       scriptElem.setAttribute("label", "comments");
       scriptElem.crossOrigin = "anonymous";
