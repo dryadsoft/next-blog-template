@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import Comment from "../../components/Comment";
+import Comment from "../../components/comment";
 import Seo from "../../components/seo";
 
 const Post = () => {
