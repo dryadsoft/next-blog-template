@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { FC } from "react";
 
-const ImageCard = () => {
+interface IImageCardProps {
+  id: number;
+}
+const ImageCard: FC<IImageCardProps> = ({ id }) => {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/post/${Date.now()}`);
+    router.push(`/post/${id}`);
   };
   return (
     <div className="p-2 cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">

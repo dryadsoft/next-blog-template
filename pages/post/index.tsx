@@ -32,11 +32,11 @@ const Posts: NextPage = ({
         className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 
         3xl:flex flex-wrap justify-center"
       >
-        <ImageCard />
-        <ImageCard />
-        <ImageCard />
-        <ImageCard />
-        <ImageCard />
+        <ImageCard id={1} />
+        <ImageCard id={2} />
+        <ImageCard id={3} />
+        <ImageCard id={4} />
+        <ImageCard id={5} />
       </div>
     </>
   );
