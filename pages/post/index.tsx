@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import Link from "next/link";
+import ImgaeCard from "../../components/ImageCard";
 import Seo from "../../components/seo";
 import { client } from "../../src/lib/apolloClient";
 const EXCHANGE_RATES = gql`
@@ -25,18 +25,20 @@ export const getStaticProps: GetStaticProps = async () => {
 const Posts: NextPage = ({
   rates,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("getStaticProps", rates.length);
   return (
-    <div className="text-white bg-gray-900 h-screen w-screen overflow-hidden">
-      <Seo title="Post" />
-      <Link href="/">
-        <a>Home</a>
-      </Link>{" "}
-      |{" "}
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </div>
+    <>
+      <Seo title={"Post"} />
+      <div
+        className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 
+        3xl:flex flex-wrap justify-center"
+      >
+        <ImgaeCard />
+        <ImgaeCard />
+        <ImgaeCard />
+        <ImgaeCard />
+        <ImgaeCard />
+      </div>
+    </>
   );
 };
 

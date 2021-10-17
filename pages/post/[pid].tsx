@@ -7,7 +7,7 @@ const Post = () => {
   const { pid } = router.query;
   return (
     <>
-      <Seo title={String(pid)} />
+      <Seo title={String(pid || "")} />
       <div>Post: {pid}</div>
     </>
   );
