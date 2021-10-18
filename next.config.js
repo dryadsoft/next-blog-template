@@ -10,7 +10,8 @@ const nestConfig = () =>
           loader: "imgix",
           path: "https://dryadsoft.github.io/next-blog-template/",
         },
+        trailingSlash: true,
       }
-    : { reactStrictMode: true };
+    : { reactStrictMode: true, trailingSlash: true };
 
 module.exports = nestConfig();
