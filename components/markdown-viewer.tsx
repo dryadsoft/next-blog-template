@@ -1,8 +1,9 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import remarkGfm from "remark-gfm";
+
 const MarkdownViewer = () => {
   const markdown = `Here is some JavaScript code:
 # 1
@@ -15,7 +16,11 @@ const MarkdownViewer = () => {
 console.log('It works!')
 ~~~
 ~~~typescript
-const test = () => console.log("test);
+const test = () => console.log("test");
+~~~
+* test
+~~~bash
+$ npm run dev
 ~~~
 A paragraph with *emphasis* and **strong importance**.
 
