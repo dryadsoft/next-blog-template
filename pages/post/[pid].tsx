@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import React from "react";
 import Comment from "../../components/comment";
+import MarkdownViewer from "../../components/markdown-viewer";
 import Seo from "../../components/seo";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -25,6 +26,7 @@ const Post = () => {
     <>
       <Seo title={String(pid || "")} />
       <div>Post: {pid}</div>
+      <MarkdownViewer />
       <Comment />
     </>
   );
