@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 
 const MarkdownViewer = () => {
   const markdown = `Here is some JavaScript code:
-# 1
+# Typescript의 모듈 시스템
 ## 2
 ### 3
 #### 4
@@ -44,6 +44,7 @@ A table:
     <ReactMarkdown
       children={markdown}
       remarkPlugins={[remarkGfm]}
+      className="markdown-viewer"
       components={{
         code({ node, inline, className, children, ...props }: any) {
           const match = /language-(\w+)/.exec(className || "");
@@ -61,7 +62,9 @@ A table:
             </code>
           );
         },
-        h1: ({ ...props }) => <h1 className="text-5xl">{props.children}</h1>,
+        h1: ({ ...props }) => (
+          <h1 className="text-4xl font-semibold">{props.children}</h1>
+        ),
         h2: ({ ...props }) => <h2 className="text-4xl">{props.children}</h2>,
         h3: ({ ...props }) => <h3 className="text-3xl">{props.children}</h3>,
         h4: ({ ...props }) => <h4 className="text-2xl">{props.children}</h4>,

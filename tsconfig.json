@@ -12,7 +12,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "typeRoots": ["node_modules/@types", "components/@types"],
+    "declaration": true, // lib 만들 때 .d.ts 파일을 자동으로
+    "declarationDir": "components/types" // 이 폴더에 만들어주는 옵션
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

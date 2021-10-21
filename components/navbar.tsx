@@ -19,11 +19,6 @@ const NavBar = () => {
             <a>ABOUT</a>
           </Link>
         </li>
-        <li className="transition duration-100 transform hover:scale-105 hover:text-red-500 active:text-red-500">
-          <Link href="/etc">
-            <a>ETC</a>
-          </Link>
-        </li>
       </ul>
     </nav>
   );

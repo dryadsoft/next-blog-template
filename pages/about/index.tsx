@@ -4,7 +4,7 @@ const About = () => {
   return (
     <>
       <Seo title={"About"} />
-      <div className="bg-red-500">About</div>
+      <div className="">About</div>
     </>
   );
 };
