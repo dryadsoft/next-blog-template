@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React, { FC } from "react";
 
-interface IImageCardProps {
+interface ITextCardProps {
   id: number;
   title: string;
   description: string;
   regDate: string;
   author: string;
 }
-const ImageCard: FC<IImageCardProps> = ({
+const TextCard: FC<ITextCardProps> = ({
   id,
   title,
   description,
@@ -37,4 +37,4 @@ const ImageCard: FC<IImageCardProps> = ({
   );
 };
 
-export default ImageCard;
+export default TextCard;

@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import fs from "fs";
 import matter from "gray-matter";
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import Link from "next/link";
 import path from "path";
 import ImageCard from "../../components/imageCard";
 import Seo from "../../components/seo";
@@ -47,14 +48,17 @@ const Posts: NextPage = ({
         3xl:flex flex-wrap justify-center"
       >
         {list.map((item: any) => (
-          <ImageCard
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            description={item.description}
-            regDate={item.regDate}
-            author={item.author}
-          />
+          <Link href={`/post/${item.id}`} key={item.id}>
+            <a>
+              <ImageCard
+                id={item.id}
+                title={item.title}
+                description={item.description}
+                regDate={item.regDate}
+                author={item.author}
+              />
+            </a>
+          </Link>
         ))}
       </div>
     </>

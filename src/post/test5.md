@@ -2,7 +2,7 @@
 id: test5
 title: 타이틀입니다.
 description: description입니다.
-regDate: 20211024
+regDate: "2021-10-24"
 author: dryadsoft
 ---
 
