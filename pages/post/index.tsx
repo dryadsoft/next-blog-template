@@ -31,51 +31,6 @@ export const getStaticProps: GetStaticProps = async () => {
     }
     return acc;
   }, []);
-
-  // const data = [
-  //   {
-  //     id: 1,
-  //     title: "타이틀입니다.",
-  //     description: "description입니다.",
-  //     regDate: "20211024",
-  //     author: "dryadsoft",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "타이틀입니다.",
-  //     description: "description입니다.",
-  //     regDate: "20211024",
-  //     author: "dryadsoft",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "타이틀입니다.",
-  //     description: "description입니다.",
-  //     regDate: "20211024",
-  //     author: "dryadsoft",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "타이틀입니다.",
-  //     description: "description입니다.",
-  //     regDate: "20211024",
-  //     author: "dryadsoft",
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "타이틀입니다.",
-  //     description: "description입니다.",
-  //     regDate: "20211024",
-  //     author: "dryadsoft",
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "타이틀입니다.",
-  //     description: "description입니다.",
-  //     regDate: "20211024",
-  //     author: "dryadsoft",
-  //   },
-  // ];
   return {
     props: { list: data },
   };

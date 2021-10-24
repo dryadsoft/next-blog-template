@@ -25,9 +25,15 @@ const ImageCard: FC<IImageCardProps> = ({
       className="p-2 cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50"
       onClick={handleClick}
     >
-      <Image src="/01.jpg" layout="responsive" width="640" height="360" />
-      <div className="p-2">
-        <h2 className="mt-1 text-2xl transition-all duration-100 ease-in-out group-hover:font-bold">
+      <Image
+        src="/01.jpg"
+        layout="responsive"
+        width="640"
+        height="360"
+        alt=""
+      />
+      <div className="p-2 text-gray-400">
+        <h2 className="mt-1 text-2xl transition-all duration-100 ease-in-out group-hover:font-bold text-gray-200">
           {title}
         </h2>
         <p className="truncate max-w-lg">{description}</p>

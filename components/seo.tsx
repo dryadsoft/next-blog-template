@@ -68,7 +68,7 @@ const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
         name="viewport"
         content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0"
       />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge, chrome=1" />
       <link
         rel="alternate"
         type="application/rss+xml"
@@ -76,7 +76,7 @@ const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
         href={process.env.rssUrl}
       />
       <link rel="shortcut icon" href="/favicon.ico" />
-      <meta http-equiv="imagetoolbar" content="no" />
+      <meta httpEquiv="imagetoolbar" content="no" />
     </Head>
   );
 };

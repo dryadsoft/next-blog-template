@@ -8,7 +8,7 @@ interface ILayoutProps {
 }
 const Layout: FC<ILayoutProps> = ({ children }) => {
   return (
-    <div className="container flex flex-col mx-auto items-center text-white bg-gray-900 h-screen w-screen">
+    <div className="container flex flex-col mx-auto items-center text-gray-200 h-screen w-screen ">
       <Header />
       <NavBar />
       <main className="w-full px-4 sm:w-11/12">{children}</main>
