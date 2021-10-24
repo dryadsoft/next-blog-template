@@ -1,48 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import remarkGfm from "remark-gfm";
 
-const MarkdownViewer = () => {
-  const markdown = `Here is some JavaScript code:
-# Typescript의 모듈 시스템
-## 2
-### 3
-#### 4
-##### 5
-###### 6
-~~~js
-console.log('It works!')
-~~~
-~~~typescript
-const test = () => console.log("test");
-~~~
-* test
-~~~bash
-$ npm run dev
-~~~
-A paragraph with *emphasis* and **strong importance**.
-
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-
-* Lists
-* [ ] todo
-* [x] done
-
-* [리액트](https://reactjs.org)
-* [ ] ㅁㅁ
-A table:
-
-| a | b |
-| - | - |
-| ㅁㅁㅁ | ㅠㅠㅠ |
-| ㅁㅁㅁ | ㅠㅠㅠ |
-| ㅁㅁㅁ | ㅠㅠㅠ |
-`;
+interface IMarkdownViewerProps {
+  content: string;
+}
+const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
   return (
     <ReactMarkdown
-      children={markdown}
+      children={content}
       remarkPlugins={[remarkGfm]}
       className="markdown-viewer"
       components={{
