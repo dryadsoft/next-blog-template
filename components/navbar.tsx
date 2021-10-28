@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const NavBar = () => {
   return (
     <nav className="w-full sm:w-11/12">
@@ -9,11 +7,11 @@ const NavBar = () => {
             <a>HOME</a>
           </Link>
         </li> */}
-        <li className="mr-2 sm:mr-10 transition duration-100 transform hover:scale-105 hover:text-red-500 active:text-red-500">
+        {/* <li className="mr-2 sm:mr-10 transition duration-100 transform hover:scale-105 hover:text-red-500 active:text-red-500">
           <Link href="/post">
             <a>POST</a>
           </Link>
-        </li>
+        </li> */}
         {/* <li className="mr-2 sm:mr-10 transition duration-100 transform hover:scale-105 hover:text-red-500 active:text-red-500">
           <Link href="/about">
             <a>ABOUT</a>

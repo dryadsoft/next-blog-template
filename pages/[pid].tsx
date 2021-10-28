@@ -9,10 +9,10 @@ import type {
 import { useRouter } from "next/router";
 import path from "path";
 import React from "react";
-import Comment from "../../components/comment";
-import MarkdownViewer from "../../components/markdown-viewer";
-import Seo from "../../components/seo";
-import Tag from "../../components/tag";
+import Comment from "../components/comment";
+import MarkdownViewer from "../components/markdown-viewer";
+import Seo from "../components/seo";
+import Tag from "../components/tag";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get all possible 'id' values via API, file, etc.
@@ -37,28 +37,30 @@ export const getStaticProps: GetStaticProps = async (context: {
   const file = path.join(process.cwd(), `src/post/${context.params.pid}.md`);
   const source = fs.readFileSync(file, "utf8");
 
-  const { content } = matter(source);
+  const { content, data } = matter(source);
 
-  return { props: { content } };
+  return { props: { content, data } };
 };
 
 const Post: NextPage = ({
   content,
+  data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
   const { pid } = router.query;
-  // console.log(content);
   return (
     <>
-      <Seo title={String(pid || "")} description={"description 입니다."} />
+      <Seo title={String(data.title || "")} description={data.description} />
       <div className="max-w-3xl m-auto text-base md:text-lg">
         <article className="mb-8">
           <h1 className="text-4xl font-extrabold mb-6 py-2 md:text-5xl">
-            타이틀 읿니다. 타이틀 타이틀.....글 제목입니다.
+            {data.title}
           </h1>
           <div className="py-2">
-            <span className="font-semibold sm:text-base mr-2">dryadsoft</span>
-            <span className="text-sm sm:text-base">2021-01-01</span>
+            <span className="font-semibold sm:text-base mr-2">
+              {data.author}
+            </span>
+            <span className="text-sm sm:text-base">{data.regDate}</span>
           </div>
           <div className="flex flex-wrap">
             <Tag text={"태그1"} />
