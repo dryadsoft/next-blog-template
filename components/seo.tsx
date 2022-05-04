@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { FC } from "react";
-
+import path from "path";
 interface ISeoProps {
   title: string;
   description?: string;
@@ -8,6 +8,10 @@ interface ISeoProps {
   pageUrl?: string;
 }
 const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
+  imageUrl =
+    imageUrl && imageUrl !== ""
+      ? path.join(process.env.homeUrl || "", imageUrl || "")
+      : "";
   return (
     <Head>
       <link rel="image_src" href={imageUrl} />
@@ -60,7 +64,7 @@ const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
       {/* <!-- END DAUMAPP --> */}
       <meta property="fb:pages" content={process.env.siteName} />
       <meta name="robots" content="all" />
-      <title>{`${title} :: ${process.env.siteName}`}</title>
+      <title>{`${title} | ${process.env.siteName}`}</title>
       <meta name="title" content={`${title} :: ${process.env.siteName}`} />
       <meta name="description" content={description} />
       <meta charSet="utf-8" />

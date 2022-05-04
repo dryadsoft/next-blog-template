@@ -4,9 +4,11 @@ title: 타이틀입니다.
 description: description입니다. description 입니다. description입니다. description입니다. description입니다. description입니다.description입니다. description입니다.description입니다.
 regDate: "2021-10-24"
 author: dryadsoft
+tag: ["test"]
 ---
 
 Here is some JavaScript code: 1
+![첫번째 이미지](/01.jpg)
 
 ## 2
 

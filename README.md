@@ -121,7 +121,7 @@ const Home: NextPage = () => {
   const { loading, error, data } = useQuery(EXCHANGE_RATES); // 추가
   if (loading) return <p>Loading...</p>; // 추가
   if (error) return <p>Error :(</p>; // 추가
-  console.log(data);
+  // console.log(data);
   return (
     <div className="text-white bg-gray-900 h-screen w-screen overflow-hidden">
       test

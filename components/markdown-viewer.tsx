@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import remarkGfm from "remark-gfm";
-
+import path from "path";
 interface IMarkdownViewerProps {
   content: string;
 }
@@ -44,6 +44,13 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
         th: ({ ...props }) => <th>{props.children}</th>,
         tr: ({ ...props }) => <tr>{props.children}</tr>,
         ul: ({ ...props }) => <ul>{props.children}</ul>,
+        img: ({ ...props }) => {
+          props.node.properties?.src &&
+            (props.node.properties.src =
+              (process.env.homeUrl || "") +
+              (props.src?.replace("/", "") || ""));
+          return <img {...props.node.properties}></img>;
+        },
       }}
     />
   );

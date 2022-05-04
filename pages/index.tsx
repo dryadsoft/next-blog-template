@@ -6,6 +6,8 @@ import Link from "next/link";
 import path from "path";
 import ImageCard from "../components/imageCard";
 import Seo from "../components/seo";
+import TextCard from "../components/textCard";
+import { getAllImgUrls, getImgUrl } from "../src/utils";
 
 const EXCHANGE_RATES = gql`
   query GetExchangeRates {
@@ -21,13 +23,22 @@ export const getStaticProps: GetStaticProps = async () => {
   // const { data } = await client.query({
   //   query: EXCHANGE_RATES,
   // });
-  const dir = path.join(process.cwd(), "src/post");
+  const dir = path.join(process.cwd(), `${process.env.postRootPath}`);
   const files = fs.readdirSync(dir, "utf8");
   const data = files.reduce((acc: { [key: string]: any }[], cur) => {
     if (cur.includes(".md")) {
-      const file = path.join(process.cwd(), `src/post/${cur}`);
+      const file = path.join(
+        process.cwd(),
+        `${process.env.postRootPath}/${cur}`
+      );
       const source = fs.readFileSync(file, "utf8");
-      const { data } = matter(source);
+      const { data, content } = matter(source);
+
+      const allImgUrls = getAllImgUrls(content);
+      const firstImgUrl = allImgUrls && getImgUrl(allImgUrls[0]);
+      data.imgUrl =
+        (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) ||
+        "";
       acc.push(data);
     }
     return acc;
@@ -40,7 +51,6 @@ export const getStaticProps: GetStaticProps = async () => {
 const Home: NextPage = ({
   list,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  // console.log("getStaticProps", rates.length);
   return (
     <>
       <Seo title={"Home"} />
@@ -51,13 +61,24 @@ const Home: NextPage = ({
         {list.map((item: any) => (
           <Link href={`/${item.id}`} key={item.id}>
             <a>
-              <ImageCard
-                id={item.id}
-                title={item.title}
-                description={item.description}
-                regDate={item.regDate}
-                author={item.author}
-              />
+              {item.imgUrl ? (
+                <ImageCard
+                  id={item.id}
+                  title={item.title}
+                  description={item.description}
+                  regDate={item.regDate}
+                  author={item.author}
+                  imgUrl={item.imgUrl}
+                />
+              ) : (
+                <TextCard
+                  id={item.id}
+                  title={item.title}
+                  description={item.description}
+                  regDate={item.regDate}
+                  author={item.author}
+                />
+              )}
             </a>
           </Link>
         ))}
