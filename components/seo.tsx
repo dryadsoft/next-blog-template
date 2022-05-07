@@ -9,9 +9,7 @@ interface ISeoProps {
 }
 const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
   imageUrl =
-    imageUrl && imageUrl !== ""
-      ? path.join(process.env.homeUrl || "", imageUrl || "")
-      : "";
+    imageUrl && imageUrl !== "" ? path.join(`${process.env.homeUrl}/`, imageUrl || "") : "";
   return (
     <Head>
       <link rel="image_src" href={imageUrl} />
@@ -26,11 +24,7 @@ const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
       <meta property="og:site_name" content={process.env.siteName} />
       <meta name="og:title" property="og:title" content={title} />
       <meta name="by" content={process.env.author} />
-      <meta
-        name="og:description"
-        property="og:description"
-        content={description}
-      />
+      <meta name="og:description" property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
       <meta property="article:section" content="IT 인터넷" />
       {/* <!-- END OPENGRAPH -- /> */}
@@ -53,10 +47,7 @@ const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
       <meta property="article:pc_view_url" content={pageUrl} />
       <meta property="article:talk_channel_view_url" content={pageUrl} />
       <meta property="article:pc_service_home" content={process.env.homeUrl} />
-      <meta
-        property="article:mobile_service_home"
-        content={process.env.homeUrl}
-      />
+      <meta property="article:mobile_service_home" content={process.env.homeUrl} />
       {/* <meta property="article:txid" content="4023133_8" /> */}
       {/* <meta property="article:published_time" content="2020-07-01T09:09:19+09:00" /> */}
       {/* <meta property="og:regDate" content="20200630230904" /> */}

@@ -30,9 +30,7 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
             </code>
           );
         },
-        h1: ({ ...props }) => (
-          <h1 className="text-4xl font-semibold">{props.children}</h1>
-        ),
+        h1: ({ ...props }) => <h1 className="text-4xl font-semibold">{props.children}</h1>,
         h2: ({ ...props }) => <h2 className="text-4xl">{props.children}</h2>,
         h3: ({ ...props }) => <h3 className="text-3xl">{props.children}</h3>,
         h4: ({ ...props }) => <h4 className="text-2xl">{props.children}</h4>,
@@ -47,8 +45,7 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
         img: ({ ...props }) => {
           props.node.properties?.src &&
             (props.node.properties.src =
-              (process.env.homeUrl || "") +
-              (props.src?.replace("/", "") || ""));
+              `${process.env.homeUrl}/` + (props.src?.replace("/", "") || ""));
           return <img {...props.node.properties}></img>;
         },
       }}

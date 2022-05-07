@@ -9,7 +9,7 @@ const Comment: FC = () => (
       const scriptElem = document.createElement("script");
       scriptElem.src = "https://utteranc.es/client.js";
       scriptElem.async = true;
-      scriptElem.setAttribute("repo", "dryadsoft/next-blog-template");
+      scriptElem.setAttribute("repo", String(process.env.GITHUB_REPO));
       scriptElem.setAttribute("issue-term", "title");
       scriptElem.setAttribute("theme", "github-dark");
       scriptElem.setAttribute("label", "comments");
