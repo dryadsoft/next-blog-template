@@ -9,7 +9,7 @@ NEXT_POST_ROOT_PATH=./src/post  => 포스팅할 마크다운 파일이 들어있
 NEXT_SITE_MAP_DIR=./public/sitemap => SITEMAP 파일이 생성될 경로
 ```
 
-> 포스팅파일(마트다운파일)은 .env 파일에서 설정한 NEXT_POST_ROOT_PATH 경로에 생성한다.
+> 포스팅파일(마크다운파일)은 .env 파일에서 설정한 NEXT_POST_ROOT_PATH 경로에 생성한다.
 
 ```s
 # sitemap 파일 생성전 sitemap 폴더 생성(최초 1번만 실행하면됨)
