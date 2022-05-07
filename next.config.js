@@ -7,6 +7,7 @@ const env = {
   homeUrl: `${process.env.NEXT_PUBLIC_HOME_URL}/`,
   rssUrl: `${process.env.NEXT_PUBLIC_HOME_URL}/rss`,
   GOOGLE_ANALYTICS: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS,
+  GITHUB_REPO: process.env.NEXT_GITHUB_REPO,
 };
 const nestConfig = () =>
   process.env.NODE_ENV === "production"
