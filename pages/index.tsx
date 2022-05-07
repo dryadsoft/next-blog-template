@@ -27,33 +27,29 @@ export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(dir, "utf8");
   const data = files.reduce((acc: { [key: string]: any }[], cur) => {
     if (cur.includes(".md")) {
-      const file = path.join(
-        process.cwd(),
-        `${process.env.postRootPath}/${cur}`
-      );
+      const file = path.join(process.cwd(), `${process.env.postRootPath}/${cur}`);
       const source = fs.readFileSync(file, "utf8");
       const { data, content } = matter(source);
 
       const allImgUrls = getAllImgUrls(content);
       const firstImgUrl = allImgUrls && getImgUrl(allImgUrls[0]);
-      data.imgUrl =
-        (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) ||
-        "";
+      data.imgUrl = (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) || "";
       acc.push(data);
     }
     return acc;
   }, []);
+  const metaData = {
+    pageUrl: `${process.env.homeUrl}`,
+  };
   return {
-    props: { list: data },
+    props: { list: data, metaData },
   };
 };
 
-const Home: NextPage = ({
-  list,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home: NextPage = ({ list, metaData }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <Seo title={"Home"} />
+      <Seo title={"Home"} description={process.env.description} pageUrl={metaData.pageUrl} />
       <div
         className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 
         3xl:flex flex-wrap justify-center"
