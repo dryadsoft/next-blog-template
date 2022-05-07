@@ -3,8 +3,9 @@
 const env = {
   siteName: "next-blog-template",
   author: "dryad",
+  description: "Next.js를 이용한 정적블로그를 만드는 템플릿입니다.",
   postRootPath: process.env.NEXT_POST_ROOT_PATH,
-  homeUrl: `${process.env.NEXT_PUBLIC_HOME_URL}/`,
+  homeUrl: `${process.env.NEXT_PUBLIC_HOME_URL}`,
   rssUrl: `${process.env.NEXT_PUBLIC_HOME_URL}/rss`,
   GOOGLE_ANALYTICS: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS,
   GITHUB_REPO: process.env.NEXT_GITHUB_REPO,
