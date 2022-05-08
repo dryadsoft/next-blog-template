@@ -7,7 +7,7 @@ import Comment from "../components/comment";
 import MarkdownViewer from "../components/markdown-viewer";
 import Seo from "../components/seo";
 import Tag from "../components/tag";
-import { getAllImgUrls, getImgUrl } from "../src/utils";
+import { getAllImgUrls, getAllPostFiles, getImgUrl } from "../src/utils";
 
 const Post: NextPage = ({ content, data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -43,30 +43,31 @@ const Post: NextPage = ({ content, data }: InferGetStaticPropsType<typeof getSta
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Get all possible 'id' values via API, file, etc.
-  const postDir = path.join(process.cwd(), `${process.env.postRootPath}`);
-  const postFiles = fs.readdirSync(postDir, "utf8");
+  const postFiles = getAllPostFiles();
   const postFileNames = postFiles.reduce((acc: string[], cur) => {
-    if (cur.includes(".md")) {
+    if (cur.endsWith(".md")) {
       acc.push(cur.replace(".md", ""));
     }
     return acc;
   }, []);
   const paths = postFileNames.map((postFileName) => ({
-    params: { pid: postFileName },
+    params: { pid: postFileName.split("/") },
   }));
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async (context: { [key: string]: any }) => {
-  const file = path.join(process.cwd(), `${process.env.postRootPath}/${context.params.pid}.md`);
+  const file = path.join(
+    process.cwd(),
+    `${process.env.postRootPath}/${context.params.pid.join("/")}.md`
+  );
   const source = fs.readFileSync(file, "utf8");
   const { content, data } = matter(source);
 
   const allImgUrls = getAllImgUrls(content);
   const firstImgUrl = allImgUrls && getImgUrl(allImgUrls[0]);
   data.imgUrl = (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) || "";
-  data.pageUrl = `${process.env.homeUrl}/${context.params.pid}`;
+  data.pageUrl = `${process.env.homeUrl}/${context.params.pid.join("/")}`;
   return { props: { content, data } };
 };
 

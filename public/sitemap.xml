@@ -2,8 +2,33 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc
+      >https://dryadsoft.github.io/next-blog-template/sitemap/sitemap_directory.xml.gz</loc
+    >
+    <lastmod>2022-05-07T02:13:50.771Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc
       >https://dryadsoft.github.io/next-blog-template/sitemap/sitemap_root.xml.gz</loc
     >
-    <lastmod>2022-05-04T05:55:11.211Z</lastmod>
+    <lastmod>2022-05-07T02:13:50.771Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc
+      >https://dryadsoft.github.io/next-blog-template/sitemap/sitemap_test.xml.gz</loc
+    >
+    <lastmod>2022-05-07T02:13:50.771Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc
+      >https://dryadsoft.github.io/next-blog-template/sitemap/sitemap_testKKK.xml.gz</loc
+    >
+    <lastmod>2022-05-07T02:13:50.771Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc
+      >https://dryadsoft.github.io/next-blog-template/sitemap/sitemap_test_test
+      copy2.xml.gz</loc
+    >
+    <lastmod>2022-05-07T02:13:50.771Z</lastmod>
   </sitemap>
 </sitemapindex>

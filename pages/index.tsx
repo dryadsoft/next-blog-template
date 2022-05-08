@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import fs from "fs";
+import fs, { promises as pfs } from "fs";
 import matter from "gray-matter";
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import path from "path";
 import ImageCard from "../components/imageCard";
 import Seo from "../components/seo";
 import TextCard from "../components/textCard";
-import { getAllImgUrls, getImgUrl } from "../src/utils";
+import { getAllImgUrls, getAllPostFiles, getImgUrl } from "../src/utils";
 
 const EXCHANGE_RATES = gql`
   query GetExchangeRates {
@@ -18,34 +18,6 @@ const EXCHANGE_RATES = gql`
   }
 `;
 
-export const getStaticProps: GetStaticProps = async () => {
-  // console.log("getStaticProps");
-  // const { data } = await client.query({
-  //   query: EXCHANGE_RATES,
-  // });
-  const dir = path.join(process.cwd(), `${process.env.postRootPath}`);
-  const files = fs.readdirSync(dir, "utf8");
-  const data = files.reduce((acc: { [key: string]: any }[], cur) => {
-    if (cur.includes(".md")) {
-      const file = path.join(process.cwd(), `${process.env.postRootPath}/${cur}`);
-      const source = fs.readFileSync(file, "utf8");
-      const { data, content } = matter(source);
-
-      const allImgUrls = getAllImgUrls(content);
-      const firstImgUrl = allImgUrls && getImgUrl(allImgUrls[0]);
-      data.imgUrl = (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) || "";
-      acc.push(data);
-    }
-    return acc;
-  }, []);
-  const metaData = {
-    pageUrl: `${process.env.homeUrl}`,
-  };
-  return {
-    props: { list: data, metaData },
-  };
-};
-
 const Home: NextPage = ({ list, metaData }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
@@ -55,7 +27,7 @@ const Home: NextPage = ({ list, metaData }: InferGetStaticPropsType<typeof getSt
         3xl:flex flex-wrap justify-center"
       >
         {list.map((item: any) => (
-          <Link href={`/${item.id}`} key={item.id}>
+          <Link href={`/${item.blogPath}`} key={item.id}>
             <a>
               {item.imgUrl ? (
                 <ImageCard
@@ -83,4 +55,28 @@ const Home: NextPage = ({ list, metaData }: InferGetStaticPropsType<typeof getSt
   );
 };
 
+export const getStaticProps: GetStaticProps = async () => {
+  const postFiles = getAllPostFiles();
+  const data = postFiles?.reduce((acc: { [key: string]: any }[], cur) => {
+    if (cur.endsWith(".md")) {
+      const file = path.join(process.cwd(), `${process.env.postRootPath}/${cur}`);
+      const source = fs.readFileSync(file, "utf8");
+      const { data, content } = matter(source);
+
+      const allImgUrls = getAllImgUrls(content);
+      const firstImgUrl = allImgUrls && getImgUrl(allImgUrls[0]);
+      data.imgUrl = (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) || "";
+      data.blogPath = cur.replace(".md", "");
+      acc.push(data);
+    }
+    return acc;
+  }, []);
+
+  const metaData = {
+    pageUrl: `${process.env.homeUrl}`,
+  };
+  return {
+    props: { list: data, metaData },
+  };
+};
 export default Home;
