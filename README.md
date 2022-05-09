@@ -5,7 +5,7 @@
 
 NEXT_PUBLIC_GOOGLE_ANALYTICS=구글 ANALYTICS
 NEXT_PUBLIC_HOME_URL=https://dryadsoft.github.io/next-blog-template  => 실제 서비스할 블로그 URL 주소
-NEXT_POST_ROOT_PATH=./src/post  => 포스팅할 마크다운 파일이 들어있는 경로
+NEXT_POST_ROOT_PATH=posts  => 포스팅할 마크다운 파일이 들어있는 경로
 NEXT_SITE_MAP_DIR=./public/sitemap => SITEMAP 파일이 생성될 경로
 NEXT_GITHUB_REPO=dryadsoft/next-blog-template => utterances 댓글을 사용하기위하여 owner/repository 입력
 ```

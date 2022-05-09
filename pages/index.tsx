@@ -18,10 +18,17 @@ const EXCHANGE_RATES = gql`
   }
 `;
 
-const Home: NextPage = ({ list, metaData }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home: NextPage = ({
+  list,
+  metaData,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <Seo title={"Home"} description={process.env.description} pageUrl={metaData.pageUrl} />
+      <Seo
+        title={"Home"}
+        description={process.env.description}
+        pageUrl={metaData.pageUrl}
+      />
       <div
         className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 
         3xl:flex flex-wrap justify-center"
@@ -59,13 +66,18 @@ export const getStaticProps: GetStaticProps = async () => {
   const postFiles = getAllPostFiles();
   const data = postFiles?.reduce((acc: { [key: string]: any }[], cur) => {
     if (cur.endsWith(".md")) {
-      const file = path.join(process.cwd(), `${process.env.postRootPath}/${cur}`);
+      const file = path.join(
+        process.cwd(),
+        `${process.env.postRootPath}/${cur}`
+      );
       const source = fs.readFileSync(file, "utf8");
       const { data, content } = matter(source);
 
       const allImgUrls = getAllImgUrls(content);
       const firstImgUrl = allImgUrls && getImgUrl(allImgUrls[0]);
-      data.imgUrl = (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) || "";
+      data.imgUrl =
+        (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) ||
+        "";
       data.blogPath = cur.replace(".md", "");
       acc.push(data);
     }
