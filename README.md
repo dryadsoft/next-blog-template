@@ -22,7 +22,7 @@ $ yarn sitemap
 
 ### 댓글기능 utteranc 를 적용하기위한 주의사항
 
-> 메타테그중 canonical의 페이지 URL이 정확하게 들어가 있어야 utteranc에서 github로 로그인시
+> 메타태그중 canonical의 페이지 URL이 정확하게 들어가 있어야 utteranc에서 github로 로그인시
 > redirect 오류가 발생하지 않는다.
 
 ```html
