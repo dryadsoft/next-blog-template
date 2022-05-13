@@ -29,4 +29,12 @@ $ yarn sitemap
 <link rel="canonical" href="https://....." />
 ```
 
+## google search console 등록
+
+[구글 서치 콘솔](https://search.google.com/search-console/welcome?hl=ko)
+
+## 네이버 search advisor emdfhr
+
+[](https://searchadvisor.naver.com/)
+
 > **[개발환경설정 바로가기](https://github.com/dryadsoft/next-blog-template/blob/master/개발환경설정.md)**
