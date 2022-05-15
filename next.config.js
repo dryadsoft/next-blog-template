@@ -20,12 +20,12 @@ const nestConfig = () =>
           loader: "imgix",
           path: `${process.env.NEXT_PUBLIC_HOME_URL}/`,
         },
-        trailingSlash: true,
+        // trailingSlash: true,
         env: { ...env },
       }
     : {
         reactStrictMode: true,
-        trailingSlash: true,
+        // trailingSlash: true,
         env: { ...env },
       };
 

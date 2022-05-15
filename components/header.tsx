@@ -10,14 +10,18 @@ const Header = () => {
           {process.env.siteName}
         </p>
       </div>
-      {/* <div className="m-5 flex flex-row items-start justify-center">
+      <div className="m-5 flex flex-row items-start justify-center">
         <Link href="/">
           <a>
-            <HomeIcon className="h-8 mx-2 cursor-pointer transition duration-100 transform hover:scale-105" />
+            <HomeIcon className="h-8 mx-2 cursor-pointer transition duration-100 transform hover:scale-105 hover:text-red-300" />
           </a>
         </Link>
-        <SearchIcon className="h-8 mx-2 cursor-pointer transition duration-100 transform hover:scale-105" />
-      </div> */}
+        {/* <Link href="/search">
+          <a>
+            <SearchIcon className="h-8 mx-2 cursor-pointer transition duration-100 transform hover:scale-105 hover:text-red-300" />
+          </a>
+        </Link> */}
+      </div>
     </header>
   );
 };

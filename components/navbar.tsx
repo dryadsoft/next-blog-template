@@ -1,24 +1,26 @@
-const NavBar = () => {
+import ActiveLink from "./activeLink";
+
+interface INavBarProps {
+  navList: string[];
+}
+const NavBar: React.FC<INavBarProps> = ({ navList }) => {
   return (
-    <nav className="w-full sm:w-11/12">
-      <ul className="list-none scrollbar-hide flex items-center justify-around sm:justify-center text-lg font-bold px-4 h-10 overflow-hidden overflow-x-auto">
-        {/* <li className="mr-2 sm:mr-10 transition duration-100 transform hover:scale-105 hover:text-red-500 active:text-red-500">
-          <Link href="/">
-            <a>HOME</a>
-          </Link>
-        </li> */}
-        {/* <li className="mr-2 sm:mr-10 transition duration-100 transform hover:scale-105 hover:text-red-500 active:text-red-500">
-          <Link href="/post">
-            <a>POST</a>
-          </Link>
-        </li> */}
-        {/* <li className="mr-2 sm:mr-10 transition duration-100 transform hover:scale-105 hover:text-red-500 active:text-red-500">
-          <Link href="/about">
-            <a>ABOUT</a>
-          </Link>
-        </li> */}
-      </ul>
-    </nav>
+    <>
+      {navList && navList.length > 1 ? (
+        <nav className="w-full sm:w-11/12">
+          <ul className="list-none scrollbar-hide flex items-center justify-around sm:justify-center text-lg font-bold px-4 h-10 overflow-hidden overflow-x-auto">
+            <ActiveLink href="/" title="HOME" />
+            {navList.map((nav, index) => (
+              <ActiveLink
+                key={index}
+                href={`/${nav}`}
+                title={nav.split("/")[nav.split("/").length - 1]}
+              />
+            ))}
+          </ul>
+        </nav>
+      ) : null}
+    </>
   );
 };
 

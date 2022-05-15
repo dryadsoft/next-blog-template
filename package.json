@@ -10,9 +10,10 @@
     "export": "next export",
     "gh-pages": "gh-pages -t -d out",
     "remove:cache": "rm -rf node_modules/.cache",
-    "deploy:test": "yarn remove:cache && yarn build && yarn sitemap && yarn export && touch out/.nojekyll",
-    "deploy": "yarn remove:cache && yarn build && yarn sitemap && yarn export && touch out/.nojekyll && yarn gh-pages",
-    "sitemap": "node gen-sitemap/sitemap"
+    "deploy:test": "yarn remove:cache && yarn build && yarn blog:sitemap && yarn blog:cache && yarn export && touch out/.nojekyll",
+    "deploy": "yarn remove:cache && yarn build && yarn blog:sitemap && yarn blog:cache && yarn export && touch out/.nojekyll && yarn gh-pages",
+    "blog:sitemap": "node src/external/gen-sitemap/sitemap",
+    "blog:cache": "node src/external/cache/index.js"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
