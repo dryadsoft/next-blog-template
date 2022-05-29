@@ -16,11 +16,11 @@ const Header = () => {
             <HomeIcon className="h-8 mx-2 cursor-pointer transition duration-100 transform hover:scale-105 hover:text-red-300" />
           </a>
         </Link>
-        {/* <Link href="/search">
+        <Link href="/search">
           <a>
             <SearchIcon className="h-8 mx-2 cursor-pointer transition duration-100 transform hover:scale-105 hover:text-red-300" />
           </a>
-        </Link> */}
+        </Link>
       </div>
     </header>
   );

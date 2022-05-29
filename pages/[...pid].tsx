@@ -1,6 +1,11 @@
 import fs from "fs";
 import matter from "gray-matter";
-import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next";
 import path from "path";
 import React from "react";
 import Comment from "../components/comment";
@@ -65,7 +70,9 @@ export const getStaticPaths: GetStaticPaths = () => {
   return { paths: [...paths, ...navPath], fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = (context: { [key: string]: any }) => {
+export const getStaticProps: GetStaticProps = (context: {
+  [key: string]: any;
+}) => {
   const filePath = path.join(
     process.cwd(),
     `${process.env.postRootPath}/${context.params.pid.join("/")}.md`
@@ -76,8 +83,12 @@ export const getStaticProps: GetStaticProps = (context: { [key: string]: any }) 
 
     const allImgUrls = getAllImgUrls(content);
     const firstImgUrl = allImgUrls && getImgUrl(allImgUrls[0]);
-    data.imgUrl = (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) || "";
-    data.pageUrl = `${process.env.homeUrl}/${context.params.pid.join("/")}`;
+    data.imgUrl =
+      (firstImgUrl && firstImgUrl[0].replace("](", "").replace(")", "")) || "";
+    data.pageUrl = path.join(
+      `${process.env.homeUrl}`,
+      context.params.pid.join("/")
+    );
     return { props: { content, data } };
   } catch (err) {
     return getListData(context.params.pid.join("/"));

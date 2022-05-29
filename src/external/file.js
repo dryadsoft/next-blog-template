@@ -1,4 +1,9 @@
-const { readdirSync, writeFileSync } = require("node:fs");
+const { readdirSync, writeFileSync, readFileSync } = require("node:fs");
+const prettier = require("prettier");
+
+const getFileContent = (path) => {
+  return readFileSync(path, { encoding: "utf-8" });
+};
 
 /**
  * @param type d: 디렉토리, f: file
@@ -26,9 +31,14 @@ const getFileName = (strFile) => {
 };
 
 const createFile = (path, content) => {
-  return writeFileSync(path, content, "utf8");
+  writeFileSync(path, content, "utf-8");
 };
+
+const formattedSitemap = (sitemap) =>
+  prettier.format(sitemap, { parser: "html", endOfLine: "lf" });
 
 exports.getDirectorys = getDirectorys;
 exports.getFileName = getFileName;
 exports.createFile = createFile;
+exports.getFileContent = getFileContent;
+exports.formattedSitemap = formattedSitemap;

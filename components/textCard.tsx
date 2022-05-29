@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Tag from "./tag";
 
 interface ITextCardProps {
   id: number;
@@ -6,6 +7,7 @@ interface ITextCardProps {
   description: string;
   regDate: string;
   author: string;
+  tag: string[];
 }
 const TextCard: FC<ITextCardProps> = ({
   id,
@@ -13,6 +15,7 @@ const TextCard: FC<ITextCardProps> = ({
   description,
   regDate,
   author,
+  tag,
 }) => {
   return (
     <div className="p-2 cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
@@ -21,9 +24,19 @@ const TextCard: FC<ITextCardProps> = ({
           {title}
         </h2>
         <p className="line-clamp-3 max-w-lg mb-2">{description}</p>
-        <p className="text-gray-100">
-          <span>{regDate}</span> <span>{author}</span>
-        </p>
+        {tag ? (
+          <div className="text-gray-100">
+            <div className="flex flex-wrap">
+              {tag.map((tag: string, i: number) => (
+                <Tag key={i} text={tag} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+        <div className="text-gray-300 text-xs sm:text-sm flex flex-row justify-between">
+          <span>{author}</span>
+          <span>{regDate}</span>
+        </div>
       </div>
     </div>
   );

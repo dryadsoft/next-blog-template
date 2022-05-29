@@ -5,10 +5,7 @@ import TextCard from "./textCard";
 
 const List = ({ list }: any) => {
   return (
-    <div
-      className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 
-    3xl:flex flex-wrap justify-center"
-    >
+    <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 3xl:flex flex-wrap justify-center">
       {list.map((item: any) => (
         <Link href={`/${item.blogPath}`} key={item.id}>
           <a>
@@ -20,6 +17,7 @@ const List = ({ list }: any) => {
                 regDate={item.regDate}
                 author={item.author}
                 imgUrl={item.imgUrl}
+                tag={item.tag}
               />
             ) : (
               <TextCard
@@ -28,6 +26,7 @@ const List = ({ list }: any) => {
                 description={item.description}
                 regDate={item.regDate}
                 author={item.author}
+                tag={item.tag}
               />
             )}
           </a>

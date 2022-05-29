@@ -10,7 +10,9 @@ const Detail: React.FC<IDetailProps> = ({ data, content }) => {
   return (
     <div className="max-w-3xl m-auto text-base md:text-lg bg-gray-800 rounded-md px-2">
       <article className="mb-8">
-        <h1 className="text-4xl font-extrabold mb-6 py-2 md:text-5xl">{data.title}</h1>
+        <h1 className="text-3xl font-bold mb-2 py-2 md:text-4xl">
+          {data.title}
+        </h1>
         <div className="py-2">
           <span className="font-semibold sm:text-base mr-2">{data.author}</span>
           <span className="text-sm sm:text-base">{data.regDate}</span>

@@ -3,10 +3,17 @@ import List from "../components/list";
 import Seo from "../components/seo";
 import { getListData } from "../src/utils";
 
-const Home: NextPage = ({ list, metaData }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home: NextPage = ({
+  list,
+  metaData,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
-      <Seo title={"Home"} description={process.env.description} pageUrl={metaData.pageUrl} />
+      <Seo
+        title={"Home"}
+        description={process.env.description}
+        pageUrl={metaData.pageUrl}
+      />
       <List list={list} />
     </>
   );

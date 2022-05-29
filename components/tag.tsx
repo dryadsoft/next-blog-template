@@ -5,7 +5,7 @@ interface ITagProps {
 }
 const Tag: FC<ITagProps> = ({ text }) => {
   return (
-    <span className="py-1 px-2 mx-2 my-1 text-white text-sm bg-gray-500 rounded-md">
+    <span className="py-1 px-1 mr-1 my-1 text-gray-200 text-xs sm:text-sm bg-emerald-600 rounded-md">
       {text}
     </span>
   );
