@@ -11,7 +11,7 @@ const Layout: FC<ILayoutProps> = ({ children, navList }) => {
     <div className="container flex flex-col mx-auto items-center text-gray-200 h-screen w-screen ">
       <Header />
       <NavBar navList={navList} />
-      <main className="w-full px-4 sm:w-11/12">{children}</main>
+      <main className="w-full sm:w-11/12">{children}</main>
       <Footer />
     </div>
   );

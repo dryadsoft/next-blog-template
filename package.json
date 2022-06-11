@@ -10,13 +10,12 @@
     "export": "next export",
     "gh-pages": "gh-pages -t -d out",
     "remove:cache": "rm -rf node_modules/.cache",
-    "deploy:test": "yarn remove:cache && yarn build && yarn blog:sitemap && yarn blog:cache && yarn export && touch out/.nojekyll",
-    "deploy": "yarn remove:cache && yarn build && yarn blog:sitemap && yarn blog:cache && yarn export && touch out/.nojekyll && yarn gh-pages",
     "blog:sitemap": "node src/external/gen-sitemap/sitemap",
-    "blog:cache": "node src/external/cache/index.js"
+    "blog:cache": "node src/external/cache/index.js",
+    "deploy": "yarn remove:cache && yarn build && yarn blog:sitemap && yarn blog:cache && yarn export && touch out/.nojekyll",
+    "deploy:publish": "yarn deploy && yarn gh-pages"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.16",
     "@heroicons/react": "^1.0.4",
     "@tailwindcss/line-clamp": "^0.2.2",
     "graphql": "^15.6.1",
@@ -37,6 +36,7 @@
     "dotenv": "^14.1.0",
     "eslint": "8.0.0",
     "eslint-config-next": "11.1.2",
+    "fast-xml-parser": "^4.0.8",
     "gh-pages": "^3.2.3",
     "globby": "11.0.2",
     "postcss": "^8.3.9",

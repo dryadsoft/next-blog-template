@@ -123,7 +123,6 @@ export const getListData = (nav = "") => {
       );
       const source = fs.readFileSync(file, "utf8");
       const { data, content } = matter(source);
-
       const allImgUrls = getAllImgUrls(content);
       const firstImgUrl = allImgUrls && getImgUrl(allImgUrls[0]);
       data.imgUrl =
@@ -134,6 +133,7 @@ export const getListData = (nav = "") => {
     }
     return acc;
   }, []);
+  data.sort((a, b) => b.id - a.id);
   const metaData = {
     pageUrl: `${process.env.homeUrl}${nav === "" ? "" : `/${nav}`}`,
     nav,

@@ -64,6 +64,7 @@ export const getStaticPaths: GetStaticPaths = () => {
   const paths = postFileNames.map((postFileName) => ({
     params: { pid: postFileName.split("/") },
   }));
+
   const navPath = navList.map((nav) => ({
     params: { pid: nav.split("/") },
   }));
@@ -89,6 +90,7 @@ export const getStaticProps: GetStaticProps = (context: {
       `${process.env.homeUrl}`,
       context.params.pid.join("/")
     );
+
     return { props: { content, data } };
   } catch (err) {
     return getListData(context.params.pid.join("/"));

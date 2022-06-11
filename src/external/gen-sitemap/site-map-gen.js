@@ -102,6 +102,7 @@ const createSiteMapFile = (path = "") => {
     path: `${POST_ROOT_PATH}/${path}`,
     type: "f",
   });
+  files.reverse();
   if (files.length > 0) {
     const urls = makeUrl(`${path === "" ? "/" : `/${path}/`}`, files);
     const siteMapText = genSiteMap(urls);

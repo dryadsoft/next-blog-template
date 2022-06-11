@@ -18,7 +18,7 @@ const Search: NextPage = () => {
     if (newWord !== "") {
       const newTimer = setTimeout(() => {
         search(newWord);
-      }, 500);
+      }, 300);
       setTimer(newTimer);
     } else {
       setResults([]);
@@ -29,6 +29,7 @@ const Search: NextPage = () => {
     const filteredCacheData = CachedData.CachedData.filter((metaData: any) =>
       metaData.title.includes(newWord)
     );
+    filteredCacheData.sort((a, b) => b.id - a.id);
     setResults(filteredCacheData);
   };
 

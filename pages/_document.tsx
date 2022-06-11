@@ -1,4 +1,5 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from "next/document";
+
 function Doc() {
   return (
     <Html>
@@ -18,6 +19,10 @@ function Doc() {
         });
       `,
           }}
+        />
+        <meta
+          name="naver-site-verification"
+          content="143aeccff29cd3985c7d197ba0ba3416879f000d"
         />
         <script
           async
