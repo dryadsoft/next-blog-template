@@ -2,9 +2,9 @@
 
 const LOCALHOST = "http://localhost:3000";
 const env = {
-  siteName: "next-blog-template",
-  author: "dryad",
-  description: "Next.js를 이용한 정적블로그를 만드는 템플릿입니다.",
+  siteName: "Nextjs Blog Template",
+  author: "dryadsoft",
+  description: "Next.js를 이용한 정적블로그를 만드는 템플릿 블로그입니다.",
   postRootPath: process.env.NEXT_POST_ROOT_PATH,
   homeUrl: `${
     process.env.NODE_ENV === "development"

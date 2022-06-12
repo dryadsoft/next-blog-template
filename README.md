@@ -1,26 +1,29 @@
 # next-blog-template
 
 ```s
-# .env 파일
+# .env 파일 생성
 NEXT_PUBLIC_GOOGLE_ANALYTICS=구글 ANALYTICS
 NEXT_PUBLIC_GOOGLE_ADS=구글 애드센스
-NEXT_PUBLIC_HOME_URL=https://dryadsoft.github.io/next-blog-template  # 실제 서비스할 블로그 URL 주소
-NEXT_POST_ROOT_PATH=posts  # 포스팅할 마크다운 파일이 들어있는 경로(수정하지 말것)
-NEXT_SITE_MAP_DIR=./public/sitemap # SITEMAP 파일이 생성될 경로(수정하지 말것)
-NEXT_GITHUB_REPO=dryadsoft/next-blog-template # utterances 댓글을 사용하기위하여 owner/repository 입력
+NEXT_PUBLIC_HOME_URL=https://dryadsoft.github.io/next-blog-template  # 실제 서비스할 gh-pages 블로그 URL 주소
+NEXT_POST_ROOT_PATH=posts  # 포스팅할 마크다운 파일이 들어있는 경로(수정하지 말것!)
+NEXT_SITE_MAP_DIR=./public/sitemap # SITEMAP 파일이 생성될 경로(수정하지 말것!)
+NEXT_GITHUB_REPO=dryadsoft/next-blog-template # utterances 댓글을 사용하기위하여 owner/repository 입력(각자 계정에 맞는걸로 수정할것!)
 ```
 
 > 포스팅파일(마크다운파일)은 .env 파일에서 설정한 NEXT_POST_ROOT_PATH 경로에 생성한다.
 
 ```s
-# sitemap 파일 생성전 sitemap 폴더 생성(최초 1번만 실행하면됨)
+# sitemap 파일 생성전 sitemap 폴더가 존재하지 않는다면 생성(최초 1번만 실행하면됨)
 $ mkdir public/sitemap
-
-# sitemap 파일 생성
-$ yarn sitemap
 ```
 
-### 댓글기능 utteranc 를 적용하기위한 주의사항
+## deploy & publish
+
+```s
+$ yarn deploy:publish
+```
+
+## 댓글기능 utteranc 를 적용하기위한 주의사항
 
 > 메타태그중 canonical의 페이지 URL이 정확하게 들어가 있어야 utteranc에서 github로 로그인시
 > redirect 오류가 발생하지 않는다.
