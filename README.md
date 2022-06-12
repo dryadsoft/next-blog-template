@@ -2,12 +2,12 @@
 
 ```s
 # .env 파일
-
 NEXT_PUBLIC_GOOGLE_ANALYTICS=구글 ANALYTICS
-NEXT_PUBLIC_HOME_URL=https://dryadsoft.github.io/next-blog-template  => 실제 서비스할 블로그 URL 주소
-NEXT_POST_ROOT_PATH=posts  => 포스팅할 마크다운 파일이 들어있는 경로
-NEXT_SITE_MAP_DIR=./public/sitemap => SITEMAP 파일이 생성될 경로
-NEXT_GITHUB_REPO=dryadsoft/next-blog-template => utterances 댓글을 사용하기위하여 owner/repository 입력
+NEXT_PUBLIC_GOOGLE_ADS=구글 애드센스
+NEXT_PUBLIC_HOME_URL=https://dryadsoft.github.io/next-blog-template  # 실제 서비스할 블로그 URL 주소
+NEXT_POST_ROOT_PATH=posts  # 포스팅할 마크다운 파일이 들어있는 경로(수정하지 말것)
+NEXT_SITE_MAP_DIR=./public/sitemap # SITEMAP 파일이 생성될 경로(수정하지 말것)
+NEXT_GITHUB_REPO=dryadsoft/next-blog-template # utterances 댓글을 사용하기위하여 owner/repository 입력
 ```
 
 > 포스팅파일(마크다운파일)은 .env 파일에서 설정한 NEXT_POST_ROOT_PATH 경로에 생성한다.
@@ -33,8 +33,8 @@ $ yarn sitemap
 
 [구글 서치 콘솔](https://search.google.com/search-console/welcome?hl=ko)
 
-## 네이버 search advisor emdfhr
+## 네이버 search advisor 등록
 
-[](https://searchadvisor.naver.com/)
+[네이버 서치 어드바이저](https://searchadvisor.naver.com/)
 
 > **[개발환경설정 바로가기](https://github.com/dryadsoft/next-blog-template/blob/master/개발환경설정.md)**

@@ -23,7 +23,7 @@ const nestConfig = () =>
         assetPrefix: "/next-blog-template/", // 서브도메인이 아니면  "/" 으로 할것
         images: {
           loader: "imgix",
-          path: `${process.env.NEXT_PUBLIC_HOME_URL}/`,
+          path: `${process.env.NEXT_PUBLIC_HOME_URL}/assets/`,
         },
         // trailingSlash: true,
         env: { ...env },
@@ -32,7 +32,7 @@ const nestConfig = () =>
         reactStrictMode: true,
         images: {
           loader: "imgix",
-          path: `${LOCALHOST}/`,
+          path: `${LOCALHOST}/assets/`,
         },
         // trailingSlash: true,
         env: { ...env },

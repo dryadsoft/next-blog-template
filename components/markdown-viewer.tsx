@@ -76,7 +76,8 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
         img: ({ ...props }) => {
           props.node.properties?.src &&
             (props.node.properties.src =
-              `${process.env.homeUrl}/` + (props.src?.replace("/", "") || ""));
+              `${process.env.homeUrl}/assets/` +
+              (props.src?.replace("/", "") || ""));
           return <img {...props.node.properties}></img>;
         },
       }}
