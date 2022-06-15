@@ -27,8 +27,9 @@ const ImageCard: FC<IImageCardProps> = ({
         layout="responsive"
         width="640"
         height="360"
-        alt=""
         className="rounded-t-md"
+        blurDataURL={imgUrl}
+        placeholder="blur"
       />
       <div className="p-2 text-gray-400 bg-gray-800 rounded-b-md">
         <h2 className="mt-1 text-2xl transition-all duration-100 ease-in-out group-hover:font-bold text-gray-200">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -86,11 +87,19 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
           </blockquote>
         ),
         img: ({ ...props }) => {
-          props.node.properties?.src &&
-            (props.node.properties.src =
-              `${process.env.homeUrl}/assets/` +
-              (props.src?.replace("/", "") || ""));
-          return <img {...props.node.properties}></img>;
+          // props.node.properties?.src &&
+          //   (props.node.properties.src =
+          //     `${process.env.homeUrl}/assets/` +
+          //     (props.src?.replace("/", "") || ""));
+          return (
+            <div className="relative pb-52 sm:pb-80">
+              <Image
+                layout="fill"
+                src={props.src as any}
+                className="object-cover"
+              />
+            </div>
+          );
         },
         a: ({ ...props }) => (
           <a className="text-blue-500" {...props.node.properties}>
