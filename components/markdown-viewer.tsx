@@ -98,7 +98,7 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
                 src={props.src as any}
                 className="object-cover"
                 placeholder="blur"
-                blurDataURL="/blur.png"
+                blurDataURL={`${process.env.ASSET_PREFIX}/blur.png`}
               />
             </div>
           );
