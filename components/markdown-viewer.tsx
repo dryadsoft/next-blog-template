@@ -98,7 +98,7 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
                 src={props.src as any}
                 className="object-cover"
                 placeholder="blur"
-                blurDataURL="https://i.ibb.co/ByhpsFY/blur.png"
+                blurDataURL="/blur.png"
               />
             </div>
           );
