@@ -47,7 +47,7 @@ const Post: NextPage = ({
         pageUrl={data.pageUrl}
       />
       <Detail data={data} content={content} />
-      <Comment />
+      {process.env.GITHUB_REPO && <Comment />}
     </>
   );
 };

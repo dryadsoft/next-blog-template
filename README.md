@@ -2,12 +2,19 @@
 
 ```s
 # .env 파일 생성
-NEXT_PUBLIC_GOOGLE_ANALYTICS=구글 ANALYTICS
-NEXT_PUBLIC_GOOGLE_ADS=구글 애드센스
-NEXT_PUBLIC_HOME_URL=https://dryadsoft.github.io/next-blog-template  # 실제 서비스할 gh-pages 블로그 URL 주소
-NEXT_POST_ROOT_PATH=posts  # 포스팅할 마크다운 파일이 들어있는 경로(수정하지 말것!)
+# Google KEY
+NEXT_PUBLIC_GOOGLE_ANALYTICS=G-XXXXXXXXXX
+NEXT_PUBLIC_GOOGLE_ADS=cub-xx-xxxxxx
+NEXT_GOOGLE_MAP_API_LOCAL_KEY=
+NEXT_GOOGLE_MAP_API_PRODUCT_KEY=
+# Github KEY
+NEXT_PUBLIC_HOME_URL= # 실제 서비스할 gh-pages 블로그 URL
+NEXT_GITHUB_REPO= # utterances 댓글을 사용하기위하여 owner/repository 입력(각자 계정에 맞는걸로 수정할것!)
+# Naver
+NEXT_NAVER_SITE_VERIFICATION=
+# Defaul
 NEXT_SITE_MAP_DIR=./public/sitemap # SITEMAP 파일이 생성될 경로(수정하지 말것!)
-NEXT_GITHUB_REPO=dryadsoft/next-blog-template # utterances 댓글을 사용하기위하여 owner/repository 입력(각자 계정에 맞는걸로 수정할것!)
+NEXT_POST_ROOT_PATH=posts # 포스팅할 마크다운 파일이 들어있는 경로(수정하지 말것!)
 ```
 
 > 포스팅파일(마크다운파일)은 .env 파일에서 설정한 NEXT_POST_ROOT_PATH 경로에 생성한다.

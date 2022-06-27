@@ -1,16 +1,22 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import document, { Html, Head, Main, NextScript } from "next/document";
 
-function Doc() {
-  return (
-    <Html>
-      <Head>
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+class CustomDocument extends document {
+  render(): JSX.Element {
+    if (process.env.GOOGLE_ADS) {
+      console.log(typeof process.env.GOOGLE_ADS, process.env.GOOGLE_ADS);
+    }
+    return (
+      <Html>
+        <Head>
+          {process.env.GOOGLE_ANALYTICS && (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`}
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -18,24 +24,31 @@ function Doc() {
           page_path: window.location.pathname,
         });
       `,
-          }}
-        />
-        <meta
-          name="naver-site-verification"
-          content="143aeccff29cd3985c7d197ba0ba3416879f000d"
-        />
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.GOOGLE_ADS}`}
-          crossOrigin="anonymous"
-        ></script>
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
-}
+                }}
+              />
+            </>
+          )}
 
-export default Doc;
+          {process.env.NAVER_SITE_VERIFICATION && (
+            <meta
+              name="naver-site-verification"
+              content={process.env.NAVER_SITE_VERIFICATION}
+            />
+          )}
+          {process.env.GOOGLE_ADS && (
+            <script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.GOOGLE_ADS}`}
+              crossOrigin="anonymous"
+            ></script>
+          )}
+        </Head>
+        <body>
+          <Main></Main>
+          <NextScript></NextScript>
+        </body>
+      </Html>
+    );
+  }
+}
+export default CustomDocument;

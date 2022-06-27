@@ -1,7 +1,13 @@
-import Link from "next/link";
 import React from "react";
-import ImageCard from "./imageCard";
-import TextCard from "./textCard";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const ImageCard = dynamic(() => import("./imageCard"), {
+  ssr: false,
+});
+const TextCard = dynamic(() => import("./textCard"), {
+  ssr: false,
+});
 
 const List = ({ list }: any) => {
   return (

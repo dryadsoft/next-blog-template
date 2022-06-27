@@ -1,9 +1,10 @@
 import Image from "next/image";
-import React, { FC } from "react";
+import React, { FC, isValidElement } from "react";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import remarkGfm from "remark-gfm";
+import MarkdownMap from "./markdown-map";
 interface IMarkdownViewerProps {
   content: string;
 }
@@ -74,25 +75,19 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
         ),
         table: ({ ...props }) => (
           <div className="overflow-x-auto mx-2">
-            <table className="border-collapse border border-solid border-gray-700 text-sm sm:text-base w-full min-w-max sm:w-fit">
+            <table className="border-collapse border border-solid border-gray-700 text-sm sm:text-base w-full sm:w-fit">
               {props.children}
             </table>
           </div>
         ),
-        // thead: ({ ...props }) => <thead>{props.children}</thead>,
-        // tbody: ({ ...props }) => <tbody>{props.children}</tbody>,
         blockquote: ({ ...props }) => (
           <blockquote className="m-4 block px-4 py-1 border-l-4 border-solid border-gray-500 text-gray-400">
             {props.children}
           </blockquote>
         ),
         img: ({ ...props }) => {
-          // props.node.properties?.src &&
-          //   (props.node.properties.src =
-          //     `${process.env.homeUrl}/assets/` +
-          //     (props.src?.replace("/", "") || ""));
           return (
-            <div className="relative pb-52 sm:pb-80">
+            <div className="relative pb-56 w-[95%] sm:pb-96 sm:w-[98%] mx-auto">
               <Image
                 layout="fill"
                 src={props.src as any}
@@ -104,20 +99,84 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
           );
         },
         a: ({ ...props }) => (
-          <a className="text-blue-500" {...props.node.properties}>
+          <a
+            className="text-blue-500"
+            {...props.node.properties}
+            target="_blank"
+          >
             {props.children}
           </a>
         ),
-        p: ({ ...props }) => (
-          <p {...props.node.properties} className="m-2">
-            {props.children}
-          </p>
-        ),
-        pre: ({ ...props }) => (
-          <pre {...props.node.properties} className="mx-1">
-            {props.children}
-          </pre>
-        ),
+        td: ({ ...props }) => {
+          // console.log(props.children);
+          const childredns = props.children.map((data, idx) => {
+            if (!isValidElement(data) && typeof data === "string") {
+              data = data?.toString().replaceAll("\\n", "");
+              data = data?.toString().replaceAll("\n", "");
+            }
+            const strTag = data?.toString().replaceAll(" ", "").toLowerCase();
+            if (strTag === "<br/>" || strTag === "<br>") {
+              data = <br key={idx} />;
+              return data;
+            }
+            return data;
+          });
+          return <td {...props.node.properties}>{childredns}</td>;
+        },
+        p: ({ ...props }) => {
+          //@ts-ignore
+          const tagName = props.node.children[0].tagName;
+          if (tagName === "img" || tagName === "a") {
+            return <>{props.children}</>;
+          }
+          const childredns = props.children.map((data, idx) => {
+            if (!isValidElement(data) && typeof data === "string") {
+              data = data?.toString().replaceAll("\\n", "");
+              data = data?.toString().replaceAll("\n", "");
+            }
+            const strTag = data?.toString().replaceAll(" ", "").toLowerCase();
+            if (strTag === "<br/>" || strTag === "<br>") {
+              data = <br key={idx} />;
+              return data;
+            }
+            return data;
+          });
+          return (
+            <p {...props.node.properties} className="m-2">
+              {childredns}
+            </p>
+          );
+        },
+        pre: ({ ...props }) => {
+          //@ts-ignore
+          const { className, children } = props.children[0].props;
+          if (className === "language-googleMap") {
+            const latLan: { [key: string]: number | string } = children[0]
+              // .replaceAll(" ", "")
+              .split("\n")
+              .filter((value: string) => value !== "")
+              .map((value: string) => ({
+                [value.split(":")[0]]: value.split(":")[1],
+              }))
+              .reduce(
+                (
+                  acc: { [key: string]: number | string },
+                  cur: { [key: string]: number | string }
+                ) => {
+                  const key = Object.keys(cur)[0];
+                  acc[key] = cur[key];
+                  return acc;
+                },
+                {}
+              );
+            return <MarkdownMap {...latLan} />;
+          }
+          return (
+            <pre {...props.node.properties} className="mx-1">
+              {props.children}
+            </pre>
+          );
+        },
       }}
     />
   );
