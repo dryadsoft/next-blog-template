@@ -2,14 +2,20 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc
+      >https://dryadsoft.github.io/next-blog-template/sitemap/sitemap_Seoul.xml.gz</loc
+    >
+    <lastmod>2022-07-06T12:54:56.844Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc
       >https://dryadsoft.github.io/next-blog-template/sitemap/sitemap_directory.xml.gz</loc
     >
-    <lastmod>2022-06-27T12:57:02.714Z</lastmod>
+    <lastmod>2022-07-06T12:54:56.844Z</lastmod>
   </sitemap>
   <sitemap>
     <loc
       >https://dryadsoft.github.io/next-blog-template/sitemap/sitemap_post.xml.gz</loc
     >
-    <lastmod>2022-06-27T12:57:02.714Z</lastmod>
+    <lastmod>2022-07-06T12:54:56.844Z</lastmod>
   </sitemap>
 </sitemapindex>

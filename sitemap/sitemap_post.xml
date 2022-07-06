@@ -8,6 +8,10 @@
   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
 >
   <url>
+    <loc>https://dryadsoft.github.io/next-blog-template/post/test9</loc>
+    <lastmod>2022-07-06T12:54:56.827Z</lastmod>
+  </url>
+  <url>
     <loc>https://dryadsoft.github.io/next-blog-template/post/test8</loc>
     <lastmod>2022-06-12T03:50:08.120Z</lastmod>
   </url>
