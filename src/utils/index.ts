@@ -133,12 +133,19 @@ export const getListData = (nav = "") => {
     }
     return acc;
   }, []);
-  data.sort((a, b) => b.id - a.id);
+  data.sort((a, b) => {
+    if (isNaN(a.id)) {
+      return b.id.localeCompare(a.id);
+    }
+    return b.id - a.id;
+  });
   const metaData = {
     pageUrl: `${process.env.homeUrl}${nav === "" ? "" : `/${nav}`}`,
     nav,
   };
   return {
-    props: { list: data, metaData, navList },
+    list: data,
+    metaData,
+    navList,
   };
 };

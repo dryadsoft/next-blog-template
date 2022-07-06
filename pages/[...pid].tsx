@@ -11,6 +11,7 @@ import React from "react";
 import Comment from "../components/comment";
 import Detail from "../components/detail";
 import List from "../components/list";
+import More from "../components/more";
 import Seo from "../components/seo";
 import {
   getAllImgUrls,
@@ -23,9 +24,12 @@ import {
 const Post: NextPage = ({
   content,
   data,
+  dataList,
   list,
   metaData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  // console.log(content, data, list, metaData);
+  // console.log(dataList);
   if (metaData) {
     return (
       <>
@@ -48,6 +52,8 @@ const Post: NextPage = ({
       />
       <Detail data={data} content={content} />
       {process.env.GITHUB_REPO && <Comment />}
+
+      {dataList && <More list={dataList} />}
     </>
   );
 };
@@ -91,9 +97,20 @@ export const getStaticProps: GetStaticProps = (context: {
       context.params.pid.join("/")
     );
 
-    return { props: { content, data } };
+    const { list: dataList, navList } = getListData(context.params.pid[0]);
+
+    return {
+      props: {
+        content,
+        data,
+        dataList: dataList.filter(
+          (item, idx) => item.id !== data.id && idx < 5
+        ),
+        navList,
+      },
+    };
   } catch (err) {
-    return getListData(context.params.pid.join("/"));
+    return { props: { ...getListData(context.params.pid.join("/")) } };
   }
 };
 

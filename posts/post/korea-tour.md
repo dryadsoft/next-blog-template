@@ -4,7 +4,19 @@ title: 63 Square (63스퀘어)
 description: With 63 floors measuring a total x_height of 249 meters, 63 Square is one of Korea’s tallest and most recognized skyscrapers. 63 Square boasts spectacular views of the Hangang River and the surrounding Bugaksan, Namsan and Gwanaksan Mountains. The building also offers an outstanding vantage point when viewing the sunset over the city.
 regDate: "2022-06-20"
 author: dryadsoft
-tag: ["seoul"]
+tag:
+  [
+    "seoul",
+    "seoul",
+    "seoul",
+    "seoul",
+    "seoul",
+    "seoul",
+    "seoul",
+    "seoul",
+    "seoul",
+    "seoul",
+  ]
 ---
 
 ![tesst](/2526386_image2_1.jpeg)

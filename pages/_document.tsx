@@ -42,6 +42,10 @@ class CustomDocument extends document {
               crossOrigin="anonymous"
             ></script>
           )}
+          <script
+            async
+            src="https://epnt.ebay.com/static/epn-smart-tools.js"
+          ></script>
         </Head>
         <body>
           <Main></Main>

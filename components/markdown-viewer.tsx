@@ -8,6 +8,22 @@ import MarkdownMap from "./markdown-map";
 interface IMarkdownViewerProps {
   content: string;
 }
+
+const transBrTag = (children: React.ReactNode & React.ReactNode[]) => {
+  return children.map((data, idx) => {
+    if (!isValidElement(data) && typeof data === "string") {
+      data = data?.toString().replaceAll("\\n", "");
+      data = data?.toString().replaceAll("\n", "");
+    }
+    const strTag = data?.toString().replaceAll(" ", "").toLowerCase();
+    if (strTag === "<br/>" || strTag === "<br>") {
+      data = <br key={idx} />;
+      return data;
+    }
+    return data;
+  });
+};
+
 const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
   return (
     <ReactMarkdown
@@ -61,7 +77,10 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
             {props.children}
           </h6>
         ),
-        li: ({ ...props }) => <li>{props.children}</li>,
+        li: ({ ...props }) => {
+          const childrens = transBrTag(props.children);
+          return <li {...props.node.properties}>{childrens}</li>;
+        },
         ol: ({ ...props }) => <ol>{props.children}</ol>,
         // td: ({ ...props }) => <td>{props.children}</td>,
         th: ({ ...props }) => (
@@ -75,7 +94,7 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
         ),
         table: ({ ...props }) => (
           <div className="overflow-x-auto mx-2">
-            <table className="border-collapse border border-solid border-gray-700 text-sm sm:text-base w-full sm:w-fit">
+            <table className="border-collapse border border-solid border-gray-700 text-base sm:text-base w-full sm:w-fit">
               {props.children}
             </table>
           </div>
@@ -108,20 +127,8 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
           </a>
         ),
         td: ({ ...props }) => {
-          // console.log(props.children);
-          const childredns = props.children.map((data, idx) => {
-            if (!isValidElement(data) && typeof data === "string") {
-              data = data?.toString().replaceAll("\\n", "");
-              data = data?.toString().replaceAll("\n", "");
-            }
-            const strTag = data?.toString().replaceAll(" ", "").toLowerCase();
-            if (strTag === "<br/>" || strTag === "<br>") {
-              data = <br key={idx} />;
-              return data;
-            }
-            return data;
-          });
-          return <td {...props.node.properties}>{childredns}</td>;
+          const childrens = transBrTag(props.children);
+          return <td {...props.node.properties}>{childrens}</td>;
         },
         p: ({ ...props }) => {
           //@ts-ignore
@@ -129,21 +136,10 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
           if (tagName === "img" || tagName === "a") {
             return <>{props.children}</>;
           }
-          const childredns = props.children.map((data, idx) => {
-            if (!isValidElement(data) && typeof data === "string") {
-              data = data?.toString().replaceAll("\\n", "");
-              data = data?.toString().replaceAll("\n", "");
-            }
-            const strTag = data?.toString().replaceAll(" ", "").toLowerCase();
-            if (strTag === "<br/>" || strTag === "<br>") {
-              data = <br key={idx} />;
-              return data;
-            }
-            return data;
-          });
+          const childrens = transBrTag(props.children);
           return (
             <p {...props.node.properties} className="m-2">
-              {childredns}
+              {childrens}
             </p>
           );
         },
@@ -171,6 +167,9 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
               );
             return <MarkdownMap {...latLan} />;
           }
+          // if (className === "language-ebayBanner") {
+          //   return <EbayBanner />;
+          // }
           return (
             <pre {...props.node.properties} className="mx-1">
               {props.children}

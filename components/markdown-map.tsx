@@ -18,7 +18,7 @@ const Marker: React.FC<IMarker> = ({ title }) => (
         <span>{title}</span>
       </div>
     )}
-    <div className="text-3xl">📍</div>;
+    <div className="text-3xl">📍</div>
   </div>
 );
 const MarkdownMap: React.FC<IMarkdownMap> = ({

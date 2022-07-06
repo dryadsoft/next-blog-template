@@ -24,18 +24,19 @@ const TextCard: FC<ITextCardProps> = ({
           {title}
         </h2>
         <p className="line-clamp-3 max-w-lg mb-2">{description}</p>
-        {tag ? (
-          <div className="text-gray-100">
-            <div className="flex flex-wrap">
-              {tag.map((tag: string, i: number) => (
-                <Tag key={i} text={tag} />
-              ))}
+
+        <div className="text-gray-300 text-xs sm:text-sm flex flex-row justify-between items-end">
+          {/* <span>{author}</span> */}
+          {tag ? (
+            <div className="text-gray-100">
+              <div className="flex flex-wrap">
+                {tag.map((tag: string, i: number) => (
+                  <Tag key={i} text={tag} />
+                ))}
+              </div>
             </div>
-          </div>
-        ) : null}
-        <div className="text-gray-300 text-xs sm:text-sm flex flex-row justify-between">
-          <span>{author}</span>
-          <span>{regDate}</span>
+          ) : null}
+          <span className="min-w-fit">{regDate}</span>
         </div>
       </div>
     </div>

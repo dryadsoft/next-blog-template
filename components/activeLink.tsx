@@ -10,7 +10,13 @@ const ActiveLink: React.FC<IActiveLink> = ({ href, title }) => {
   return (
     <li className="mr-2 sm:mr-10 transition duration-100 transform hover:scale-105 hover:text-red-300">
       <Link href={href}>
-        <a className={decodeURI(activePath) === href ? "text-red-400" : ""}>
+        <a
+          className={
+            decodeURI(activePath.split("/")[1]) === href.split("/")[1]
+              ? "text-red-400"
+              : ""
+          }
+        >
           {title.toUpperCase()}
         </a>
       </Link>

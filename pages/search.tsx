@@ -29,7 +29,14 @@ const Search: NextPage = () => {
     const filteredCacheData = CachedData.CachedData.filter((metaData: any) =>
       metaData.title.includes(newWord)
     );
-    filteredCacheData.sort((a, b) => b.id - a.id);
+    filteredCacheData.sort((a, b) => {
+      if (isNaN(Number(a.id))) {
+        //@ts-ignore
+        return b.id.localeCompare(a.id);
+      }
+      //@ts-ignore
+      return b.id - a.id;
+    });
     setResults(filteredCacheData);
   };
 

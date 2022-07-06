@@ -11,7 +11,7 @@ const TextCard = dynamic(() => import("./textCard"), {
 
 const List = ({ list }: any) => {
   return (
-    <div className="sm:px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 3xl:flex flex-wrap justify-center">
+    <div className="flex-wrap justify-center sm:px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 3xl:flex">
       {list.map((item: any) => (
         <Link href={`/${item.blogPath}`} key={item.id}>
           <a>
