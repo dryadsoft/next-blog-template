@@ -3,7 +3,7 @@ import document, { Html, Head, Main, NextScript } from "next/document";
 class CustomDocument extends document {
   render(): JSX.Element {
     if (process.env.GOOGLE_ADS) {
-      console.log(typeof process.env.GOOGLE_ADS, process.env.GOOGLE_ADS);
+      // console.log(typeof process.env.GOOGLE_ADS, process.env.GOOGLE_ADS);
     }
     return (
       <Html>
@@ -42,10 +42,10 @@ class CustomDocument extends document {
               crossOrigin="anonymous"
             ></script>
           )}
-          <script
+          {/* <script
             async
             src="https://epnt.ebay.com/static/epn-smart-tools.js"
-          ></script>
+          ></script> */}
         </Head>
         <body>
           <Main></Main>

@@ -7,7 +7,7 @@ const ImageBox = ({ data }) => {
     <li className="max-w-[150px] min-w-[150px] h-full mx-1 bg-gray-600/30 rounded-md sm:max-w-[200px] sm:min-w-[200px] md:max-w-[230px] md:min-w-[230px]">
       <div className="relative w-full h-4/5">
         <Image
-          src={`${process.env.ASSET_PREFIX}/${data.imgUrl}`}
+          src={data.imgUrl}
           layout="fill"
           quality={50}
           className="rounded-t-md"
@@ -42,7 +42,7 @@ const HList = ({ datas }) => {
     <article className="w-full max-w-5xl mx-auto px-1 mb-16 h-40 sm:mb-20 sm:h-52 md:h-60">
       <div className="text-lg font-semibold flex justify-between items-end mb-2 sm:mb-4">
         <span>{key.toUpperCase()}</span>
-        <Link href={key}>
+        <Link href={`/${key}`}>
           <a>
             <span className="text-sm text-neutral-200 cursor-pointer">
               MORE
@@ -55,7 +55,7 @@ const HList = ({ datas }) => {
           //@ts-ignore
           datas[key].map((data, idx) => {
             return (
-              <Link key={idx} href={data.blogPath}>
+              <Link key={idx} href={`/${data.blogPath}`}>
                 <a>
                   {data.imgUrl ? (
                     <ImageBox data={data} />

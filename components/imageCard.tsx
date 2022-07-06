@@ -32,7 +32,7 @@ const ImageCard: FC<IImageCardProps> = ({
         placeholder="blur"
         blurDataURL={`${process.env.ASSET_PREFIX}/blur.png`}
       />
-      <div className="p-2 text-gray-400 bg-gray-800 rounded-b-md">
+      <div className="p-2 text-gray-400 bg-gray-500/20 rounded-b-md">
         <h2 className="mt-1 text-2xl transition-all duration-100 ease-in-out group-hover:font-bold text-gray-200">
           {title}
         </h2>
