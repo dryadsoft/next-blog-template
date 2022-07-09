@@ -22,7 +22,7 @@ const MoreImageCard: FC<IMoreImageCardProps> = ({
 }) => {
   return (
     <div className="flex flex-row justify-items-end p-2 cursor-pointer transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
-      <div className="relative w-1/4 h-20">
+      <div className="relative w-1/4 h-16">
         <Image
           src={imgUrl}
           layout="fill"
@@ -32,9 +32,9 @@ const MoreImageCard: FC<IMoreImageCardProps> = ({
           blurDataURL={`${process.env.ASSET_PREFIX}/blur.png`}
         />
       </div>
-      <div className="p-2 text-gray-400 bg-gray-700 rounded-r-md h-20 w-3/4">
-        <h3 className="line-clamp-1 mt-1 text-xl text-gray-200">{title}</h3>
-        <p className="line-clamp-1 max-w-lg mb-2">{description}</p>
+      <div className="p-2 text-gray-400 bg-gray-700 rounded-r-md h-16 w-3/4">
+        <h3 className="line-clamp-1 mt-1 text-base text-gray-200">{title}</h3>
+        <p className="line-clamp-1 max-w-lg mb-2 text-sm">{description}</p>
       </div>
     </div>
   );

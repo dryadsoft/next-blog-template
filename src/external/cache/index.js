@@ -1,7 +1,7 @@
 const { readdirSync, readFileSync } = require("node:fs");
 const path = require("node:path");
 const matter = require("gray-matter");
-const fileUtils = require("../file");
+const { createFile } = require("../file");
 
 require("dotenv").config();
 const POST_ROOT_PATH = process.env.NEXT_POST_ROOT_PATH;
@@ -93,10 +93,7 @@ const getListData = (nav = "") => {
 
 try {
   const cachedData = getListData();
-  fileUtils.createFile(
-    CACHE_DATA_PATH,
-    JSON.stringify({ CachedData: cachedData })
-  );
+  createFile(CACHE_DATA_PATH, JSON.stringify({ CachedData: cachedData }));
 } catch (err) {
   console.log(err);
 }

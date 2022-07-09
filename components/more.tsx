@@ -15,7 +15,7 @@ const More = ({ list }: any) => {
       <div className="pl-2 font-semibold text-xl">
         <span>More</span>
       </div>
-      <div className="my-4 flex-wrap justify-center sm:px-5  sm:grid md:grid-cols-2">
+      <div className="my-4 flex-wrap justify-center sm:px-5  sm:grid md:grid-cols-2 select-none">
         {list.map((item: any) => (
           <Link href={`/${item.blogPath}`} key={item.id}>
             <a>

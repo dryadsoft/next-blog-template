@@ -22,6 +22,7 @@ const env = {
       ? process.env.NEXT_GOOGLE_MAP_API_LOCAL_KEY
       : process.env.NEXT_GOOGLE_MAP_API_PRODUCT_KEY
   }`,
+  EBAY_IR_SITE_VERIFICATION: process.env.NEXT_EBAY_IR_SITE_VERIFICATION,
 };
 const nestConfig = () =>
   process.env.NODE_ENV === "production"

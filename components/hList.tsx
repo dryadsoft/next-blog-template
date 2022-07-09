@@ -39,7 +39,7 @@ const TextBox = ({ data }) => {
 const HList = ({ datas }) => {
   const key = Object.keys(datas)[0];
   return (
-    <article className="w-full max-w-5xl mx-auto px-1 mb-16 h-40 sm:mb-20 sm:h-52 md:h-60">
+    <article className="w-full max-w-5xl mx-auto px-1 mb-16 h-40 sm:mb-20 sm:h-52 md:h-60 select-none">
       <div className="text-lg font-semibold flex justify-between items-end mb-2 sm:mb-4">
         <span>{key.toUpperCase()}</span>
         <Link href={`/${key}`}>

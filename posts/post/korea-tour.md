@@ -19,7 +19,7 @@ tag:
   ]
 ---
 
-![tesst](/2526386_image2_1.jpeg)
+![tesst](/2526386_image2_1.webp)
 
 ## Overview
 
@@ -48,13 +48,13 @@ tag:
 
 ## Detail Image
 
-![이미지1](1567933_image2_1.jpeg)
-![이미지2](1567934_image2_1.jpeg)
-![이미지3](1567935_image2_1.jpeg)
+![이미지1](1567933_image2_1.webp)
+![이미지2](1567934_image2_1.webp)
+![이미지3](1567935_image2_1.webp)
 
 ### 이미지 링크
 
-[![이미지4](1567937_image2_1.jpeg)](https://google.co.kr, "title")
+[![이미지4](1567937_image2_1.webp)](https://google.co.kr, "title")
 
 ## Contact
 

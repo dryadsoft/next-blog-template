@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import remarkGfm from "remark-gfm";
+import MarkEbayBanner from "./markdown-ebayBanner";
 import MarkdownMap from "./markdown-map";
 interface IMarkdownViewerProps {
   content: string;
@@ -22,6 +23,27 @@ const transBrTag = (children: React.ReactNode & React.ReactNode[]) => {
     }
     return data;
   });
+};
+
+const transParams = (child: any) => {
+  const params: { [key: string]: number | string } = child
+    .split("\n")
+    .filter((value: string) => value !== "")
+    .map((value: string) => ({
+      [value.split(":")[0]]: value.split(":")[1],
+    }))
+    .reduce(
+      (
+        acc: { [key: string]: number | string },
+        cur: { [key: string]: number | string }
+      ) => {
+        const key = Object.keys(cur)[0];
+        acc[key] = cur[key];
+        return acc;
+      },
+      {}
+    );
+  return params;
 };
 
 const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
@@ -106,11 +128,13 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
         ),
         img: ({ ...props }) => {
           return (
-            <div className="relative pb-56 w-[95%] sm:pb-96 sm:w-[98%] mx-auto">
+            <div className="w-[95%] sm:w-[98%] mx-auto">
               <Image
-                layout="fill"
+                layout="responsive"
                 src={props.src as any}
-                className="object-cover"
+                width="100%"
+                height="66.6%"
+                objectFit="cover"
                 placeholder="blur"
                 blurDataURL={`${process.env.ASSET_PREFIX}/blur.png`}
               />
@@ -147,29 +171,12 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
           //@ts-ignore
           const { className, children } = props.children[0].props;
           if (className === "language-googleMap") {
-            const latLan: { [key: string]: number | string } = children[0]
-              // .replaceAll(" ", "")
-              .split("\n")
-              .filter((value: string) => value !== "")
-              .map((value: string) => ({
-                [value.split(":")[0]]: value.split(":")[1],
-              }))
-              .reduce(
-                (
-                  acc: { [key: string]: number | string },
-                  cur: { [key: string]: number | string }
-                ) => {
-                  const key = Object.keys(cur)[0];
-                  acc[key] = cur[key];
-                  return acc;
-                },
-                {}
-              );
+            const latLan = transParams(children[0]);
             return <MarkdownMap {...latLan} />;
+          } else if (className === "language-ebayBanner") {
+            const params = transParams(children[0]);
+            return <MarkEbayBanner {...params} />;
           }
-          // if (className === "language-ebayBanner") {
-          //   return <EbayBanner />;
-          // }
           return (
             <pre {...props.node.properties} className="mx-1">
               {props.children}

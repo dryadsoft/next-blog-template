@@ -10,11 +10,13 @@
     "export": "next export",
     "gh-pages": "gh-pages -t -d out",
     "remove:cache": "rm -rf node_modules/.cache",
-    "blog:sitemap": "node src/external/gen-sitemap/sitemap",
-    "blog:cache": "node src/external/cache/index.js",
-    "deploy": "yarn remove:cache && yarn build && yarn blog:sitemap && yarn blog:cache && yarn export && touch out/.nojekyll",
-    "deploy:publish": "yarn deploy && yarn gh-pages",
-    "tour": "node src/external/tourinfo/index.js"
+    "gen:sitemap": "node src/external/gen-sitemap/sitemap",
+    "gen:cache": "node src/external/cache/index.js",
+    "gen:post": "node src/external/gen-md/index.js",
+    "gen:webp": "node src/external/gen-webp/index.js",
+    "gen:tour": "node src/external/gen-tourinfo/index.js",
+    "deploy": "yarn remove:cache && yarn build && yarn gen:sitemap && yarn gen:cache && yarn export && touch out/.nojekyll",
+    "deploy:publish": "yarn deploy && yarn gh-pages"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.4",

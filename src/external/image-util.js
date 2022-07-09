@@ -23,33 +23,38 @@ async function downloadImage(imgUrl, downloadPath = "") {
   });
   response.data.pipe(writer);
   return new Promise((resolve, reject) => {
-    const resolveDone = async () => {
-      const ext = downPath.split(".")[downPath.split(".").length - 1];
-      let buffer;
-      if (ext.toUpperCase() === "BMP") {
-        const transFileName = `${downPath.substring(
-          0,
-          downPath.lastIndexOf(".")
-        )}.jpg`;
-        const bmpFile = await Jimp.read(downPath);
-        await bmpFile.writeAsync(transFileName);
-        buffer = await sharp(transFileName).withMetadata().webp().toBuffer();
-        unlinkSync(transFileName);
-      } else {
-        buffer = await sharp(downPath).withMetadata().webp().toBuffer();
-      }
-      createFile(
-        `${downPath.substring(0, downPath.lastIndexOf("."))}.webp`,
-        buffer
-      );
-      unlinkSync(downPath);
+    const imagePath = downPath;
+    const resolveDone = async (imagePath) => {
+      transImageToWebp(imagePath);
       return resolve(
         `${imageName.substring(0, imageName.lastIndexOf("."))}.webp`
       );
     };
-    writer.on("finish", resolveDone);
+    writer.on("finish", () => resolveDone(imagePath));
     writer.on("error", reject);
   });
 }
 
+async function transImageToWebp(imagePath) {
+  const ext = imagePath.split(".")[imagePath.split(".").length - 1];
+  let buffer;
+  if (ext.toUpperCase() === "BMP") {
+    const transFileName = `${imagePath.substring(
+      0,
+      imagePath.lastIndexOf(".")
+    )}.jpg`;
+    const bmpFile = await Jimp.read(imagePath);
+    await bmpFile.writeAsync(transFileName);
+    buffer = await sharp(transFileName).withMetadata().webp().toBuffer();
+    unlinkSync(transFileName);
+  } else {
+    buffer = await sharp(imagePath).withMetadata().webp().toBuffer();
+  }
+  createFile(
+    `${imagePath.substring(0, imagePath.lastIndexOf("."))}.webp`,
+    buffer
+  );
+  unlinkSync(imagePath);
+}
 exports.downloadImage = downloadImage;
+exports.transImageToWebp = transImageToWebp;

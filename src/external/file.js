@@ -46,12 +46,28 @@ const formattedSitemap = (sitemap) =>
 /**
  * 디렉토리 존재여부
  * @param dirPath: string
- * @return result: Promise<boolean>
+ * @return result: boolean
  */
 function isDierctory(dirPath) {
   let result = false;
   try {
     readdirSync(dirPath);
+    result = true;
+  } catch (e) {
+    result = false;
+  }
+  return result;
+}
+
+/**
+ * 파일 존재여부
+ * @param filePath: string
+ * @return result: boolean
+ */
+function isFile(filePath) {
+  let result = false;
+  try {
+    readFileSync(filePath);
     result = true;
   } catch (e) {
     result = false;
@@ -102,3 +118,4 @@ exports.getBlogPageId = getBlogPageId;
 exports.createMarkdownFile = createMarkdownFile;
 exports.getToday = getToday;
 exports.makeDir = makeDir;
+exports.isFile = isFile;

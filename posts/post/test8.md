@@ -74,7 +74,7 @@ A paragraph with _emphasis_ and **strong importance**.
 
 ## 이미지
 
-![첫번째 이미지](/01.jpg)
+![첫번째 이미지](/01.webp)
 
 > 이미지는 public/assets 경로에 넣는다.
 > 이미지 호출할때는 "/이미지파일명" 으로 호출한다.(이미지경로에 assets를 넣지 않는다.)
