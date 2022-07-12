@@ -15,7 +15,8 @@
     "gen:post": "node src/external/gen-md/index.js",
     "gen:webp": "node src/external/gen-webp/index.js",
     "gen:tour": "node src/external/gen-tourinfo/index.js",
-    "deploy": "yarn remove:cache && yarn build && yarn gen:sitemap && yarn gen:cache && yarn export && touch out/.nojekyll",
+    "deploy:remove": "yarn remove:cache && yarn build && yarn gen:sitemap && yarn gen:cache && yarn export && touch out/.nojekyll",
+    "deploy": "yarn build && yarn gen:sitemap && yarn gen:cache && yarn export && touch out/.nojekyll",
     "deploy:publish": "yarn deploy && yarn gh-pages"
   },
   "dependencies": {
