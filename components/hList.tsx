@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowSmRightIcon } from "@heroicons/react/outline";
 
 //@ts-ignore
 const ImageBox = ({ data }) => {
@@ -37,23 +38,20 @@ const TextBox = ({ data }) => {
 };
 //@ts-ignore
 const HList = ({ datas }) => {
-  const key = Object.keys(datas)[0];
   return (
     <article className="w-full max-w-5xl mx-auto px-1 mb-16 h-40 sm:mb-20 sm:h-52 md:h-60 select-none">
-      <div className="text-lg font-semibold flex justify-between items-end mb-2 sm:mb-4">
-        <span>{key.toUpperCase()}</span>
-        <Link href={`/${key}`}>
+      <div className="text-base font-semibold flex justify-between text-gray-300 items-end mb-2 sm:mb-4 sm:text-lg">
+        <span>{datas.name}</span>
+        <Link href={`/${datas.href}`}>
           <a>
-            <span className="text-sm text-neutral-200 cursor-pointer">
-              MORE
-            </span>
+            <ArrowSmRightIcon className="h-8 w-8 sm:h-9 sm:w-9" />
           </a>
         </Link>
       </div>
       <ul className="flex flex-row h-full w-full justify-start flex-nowrap overflow-x-auto scrollbar-hide list-none">
         {
           //@ts-ignore
-          datas[key].map((data, idx) => {
+          datas.datas.map((data, idx) => {
             return (
               <Link key={idx} href={`/${data.blogPath}`}>
                 <a>
