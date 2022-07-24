@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps = () => {
         return {
           href: data.href,
           name: data.name,
-          datas: data.datas.filter((blog: any, idx: number) => idx < 6),
+          datas: data.datas.filter((blog: any, idx: number) => idx < 10),
         };
       });
     customNav = customNav.map((data: any) => data.href);

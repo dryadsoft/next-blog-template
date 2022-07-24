@@ -49,7 +49,7 @@ const ImageCard: FC<IImageCardProps> = ({
               </div>
             </div>
           ) : null}
-          <span className="min-w-fit">{regDate}</span>
+          {/* <span className="min-w-fit">{regDate}</span> */}
         </div>
       </div>
     </div>
