@@ -5,6 +5,7 @@ import NavBar from "./navbar";
 
 interface ILayoutProps {
   navList: string[];
+  children?: React.ReactNode;
 }
 const Layout: FC<ILayoutProps> = ({ children, navList }) => {
   return (

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React, { FC } from "react";
-import Tag from "./tag";
 
 interface IMoreImageCardProps {
   id: number;

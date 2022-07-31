@@ -21,6 +21,33 @@ class CustomDocument extends document {
               value={process.env.EBAY_IR_SITE_VERIFICATION}
             />
           )}
+          {process.env.GOOGLE_SITE_VERIFICATION && (
+            <meta
+              name="google-site-verification"
+              //@ts-ignore
+              value={process.env.GOOGLE_SITE_VERIFICATION}
+            />
+          )}
+          {process.env.GOOGLE_ANALYTICS && (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`}
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${process.env.GOOGLE_ANALYTICS}', {
+          page_path: window.location.pathname,
+        });
+      `,
+                }}
+              />
+            </>
+          )}
         </Head>
         <body>
           <Main></Main>

@@ -8,14 +8,11 @@ interface ISeoProps {
   pageUrl?: string;
 }
 const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
-  imageUrl =
-    imageUrl && imageUrl !== ""
-      ? path.join(`${process.env.homeUrl}/`, imageUrl)
-      : "";
+  imageUrl = imageUrl && imageUrl !== "" ? path.join(`/assets/`, imageUrl) : "";
   return (
     <Head>
       <title>{`${title} | ${process.env.siteName}`}</title>
-      <meta name="title" content={`${title} :: ${process.env.siteName}`} />
+      <meta name="title" content={`${title} | ${process.env.siteName}`} />
       <meta name="description" content={description} />
       <meta charSet="utf-8" />
       <meta
@@ -46,20 +43,22 @@ const Seo: FC<ISeoProps> = ({ title, description, imageUrl, pageUrl }) => {
       <meta property="og:article:author" content={process.env.author} />
       <meta property="og:site_name" content={process.env.siteName} />
       <meta property="og:image" content={imageUrl} />
-      <meta name="og:title" property="og:title" content={title} />
       <meta
-        name="og:description"
-        property="og:description"
-        content={description}
+        property="og:title"
+        content={`${title} | ${process.env.siteName}`}
       />
+      <meta property="og:description" content={description} />
       {/* <!-- END OPENGRAPH -- /> */}
       {/* <!-- BEGIN TWITTERCARD --> */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={process.env.author} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:creator" content={process.env.author} />
+      <meta
+        name="twitter:title"
+        content={`${title} | ${process.env.siteName}`}
+      />
       <meta name="twitter:description" content={description} />
-      <meta property="twitter:image" content={imageUrl} />
+      <meta name="twitter:image" content={imageUrl} />
+      <meta name="twitter:creator" content={process.env.author} />
+      <meta name="twitter:site" content={pageUrl} />
       {/* <!-- END TWITTERCARD -- />
 
       <!-- BEGIN DAUMAPP --> */}

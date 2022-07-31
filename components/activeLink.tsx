@@ -8,12 +8,12 @@ interface IActiveLink {
 const ActiveLink: React.FC<IActiveLink> = ({ href, title }) => {
   const { asPath: activePath } = useRouter();
   return (
-    <li className="mr-2 sm:mr-10 transition duration-100 transform hover:scale-105 hover:text-red-300">
+    <li className="min-w-fit mx-1.5 sm:mx-3 transition duration-100 transform text-gray-500 hover:scale-105 hover:text-gray-300">
       <Link href={href}>
         <a
           className={
             decodeURI(activePath.split("/")[1]) === href.split("/")[1]
-              ? "text-red-400"
+              ? "text-gray-50"
               : ""
           }
         >

@@ -3,6 +3,7 @@ const removeLineBreak = (str) => str.replace(/(\r\n|\n|\r)/gm, "");
 const getHref = (strUrl, title) => {
   let aTaghref;
   let aTagTitle;
+  strUrl = removeLineBreak(strUrl);
   if (strUrl && strUrl !== "") {
     aTaghref = strUrl.match(/<a.*?href="([^"]*)"[^>]*>/);
     aTagTitle = strUrl.match(/<a\s+.*?>(.*)<\/a>/);
@@ -12,7 +13,7 @@ const getHref = (strUrl, title) => {
 
 const isTag = (tagName, strTag) => {
   const regex = new RegExp(`<(\/${tagName}|${tagName})([^>]*)>`);
-  return strTag.match(regex) ? true : false;
+  return String(strTag).match(regex) ? true : false;
 };
 
 exports.removeLineBreak = removeLineBreak;

@@ -104,7 +104,7 @@ export const getStaticProps: GetStaticProps = (context: {
         content,
         data,
         dataList: dataList.filter(
-          (item, idx) => item.id !== data.id && idx < 5
+          (item, idx) => item.id !== data.id && idx < 7
         ),
         navList,
       },

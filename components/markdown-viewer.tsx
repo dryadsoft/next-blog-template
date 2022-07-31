@@ -29,9 +29,13 @@ const transParams = (child: any) => {
   const params: { [key: string]: number | string } = child
     .split("\n")
     .filter((value: string) => value !== "")
-    .map((value: string) => ({
-      [value.split(":")[0]]: value.split(":")[1],
-    }))
+    .map((value: string) => {
+      const values = value.split(":");
+      const [_, ...rest] = values;
+      return {
+        [values[0]]: rest.join(":"),
+      };
+    })
     .reduce(
       (
         acc: { [key: string]: number | string },
@@ -49,7 +53,7 @@ const transParams = (child: any) => {
 const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
   return (
     <ReactMarkdown
-      children={content}
+      // children={content}
       remarkPlugins={[remarkGfm]}
       className="markdown-viewer"
       components={{
@@ -57,12 +61,14 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
           const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
             <SyntaxHighlighter
-              children={String(children).replace(/\n$/, "")}
+              // children={String(children).replace(/\n$/, "")}
               style={dracula}
               language={match[1]}
               PreTag="div"
               {...props}
-            />
+            >
+              {String(children).replace(/\n$/, "")}
+            </SyntaxHighlighter>
           ) : (
             <code className={className} {...props}>
               {children}
@@ -133,7 +139,7 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
                 layout="responsive"
                 src={props.src as any}
                 width="100%"
-                height="66.6%"
+                height="100%"
                 objectFit="cover"
                 placeholder="blur"
                 blurDataURL={`${process.env.ASSET_PREFIX}/blur.png`}
@@ -176,7 +182,32 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
           } else if (className === "language-ebayBanner") {
             const params = transParams(children[0]);
             return <MarkEbayBanner {...params} />;
+          } else if (className === "language-button") {
+            const params = transParams(children[0]);
+            return (
+              <div className="text-center mt-10 mb-6">
+                <a
+                  className="bg-blue-700 px-20 py-3  rounded-md hover:bg-red-300"
+                  href={params.link as string}
+                >
+                  {params.title}
+                </a>
+              </div>
+            );
+          } else if (className === "language-rightText") {
+            const params = transParams(children[0]);
+            return (
+              <div className="w-full px-6 flex justify-end">
+                <div className="text-ml text-gray-300">
+                  <div>
+                    <span>{params.title}</span>
+                    <span>{params.value}</span>
+                  </div>
+                </div>
+              </div>
+            );
           }
+
           return (
             <pre {...props.node.properties} className="mx-1">
               {props.children}
@@ -184,7 +215,9 @@ const MarkdownViewer: FC<IMarkdownViewerProps> = ({ content }) => {
           );
         },
       }}
-    />
+    >
+      {content}
+    </ReactMarkdown>
   );
 };
 

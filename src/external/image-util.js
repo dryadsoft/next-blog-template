@@ -25,12 +25,12 @@ async function downloadImage(imgUrl, downloadPath = "") {
   return new Promise((resolve, reject) => {
     const imagePath = downPath;
     const resolveDone = async (imagePath) => {
-      transImageToWebp(imagePath);
+      await transImageToWebp(imagePath);
       return resolve(
         `${imageName.substring(0, imageName.lastIndexOf("."))}.webp`
       );
     };
-    writer.on("finish", () => resolveDone(imagePath));
+    writer.on("finish", async () => await resolveDone(imagePath));
     writer.on("error", reject);
   });
 }

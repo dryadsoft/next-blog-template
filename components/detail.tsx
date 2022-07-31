@@ -23,7 +23,7 @@ const Detail: React.FC<IDetailProps> = ({ data, content }) => {
         ) : null}
         <div className=" text-right">
           {/* <span className="font-semibold sm:text-base mr-2">{data.author}</span> */}
-          <span className="text-sm sm:text-base">{data.regDate}</span>
+          {/* <span className="text-sm sm:text-base">{data.regDate}</span> */}
         </div>
       </article>
       <div>

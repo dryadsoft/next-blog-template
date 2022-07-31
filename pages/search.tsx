@@ -27,9 +27,10 @@ const Search: NextPage = () => {
 
   const search = (newWord: string) => {
     const filteredCacheData = CachedData.CachedData.filter((metaData: any) =>
-      metaData.title.includes(newWord)
+      metaData.title.toLowerCase().includes(newWord.toLowerCase())
     );
     filteredCacheData.sort((a, b) => {
+      //@ts-ignore
       if (isNaN(Number(a.id))) {
         //@ts-ignore
         return b.id.localeCompare(a.id);
@@ -63,7 +64,7 @@ const Search: NextPage = () => {
           <input
             className="py-1 pl-2 pr-8 rounded-md text-gray-800 w-60"
             type="text"
-            placeholder="검색어를 입력하십시오"
+            placeholder="Enter Keyword"
             value={word}
             onChange={onChange}
             autoFocus={true}
@@ -80,7 +81,7 @@ const Search: NextPage = () => {
         <List list={results} />
       ) : (
         <div className="px-5 my-10 flex justify-center items-center">
-          <span>검색결과가 존재하지 않습니다.</span>
+          <span className="text-gray-300">No result</span>
         </div>
       )}
     </>

@@ -88,10 +88,11 @@ const createDirectorySitemapFile = (commonUrls = [], dirName = "") => {
     if (commonUrls.length > 0) {
       const urls = makeUrl("/", commonUrls);
       const defaultUrl = `<url>
-    <loc>${process.env.NEXT_PUBLIC_HOME_URL}</loc>
-    <lastmod>${getToday}</lastmod>
-  </url>`;
+      <loc>${process.env.NEXT_PUBLIC_HOME_URL}</loc>
+      <lastmod>${getToday}</lastmod>
+    </url>`;
       const siteMapFile = genSiteMap(`${defaultUrl}${urls}`);
+
       createFile(`${SITE_MAP_DIR}/sitemap_directory.xml`, siteMapFile);
     }
   }

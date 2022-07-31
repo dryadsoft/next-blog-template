@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import Tag from "./tag";
 
 interface IMoreTextCardProps {
   id: number;
