@@ -44,7 +44,7 @@ const nestConfig = () =>
         env: { ...env },
       }
     : {
-        reactStrictMode: true,
+        reactStrictMode: false,
         images: {
           loader: "imgix",
           path: `${LOCALHOST}/assets/`,
